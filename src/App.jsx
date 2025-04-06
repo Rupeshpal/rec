@@ -1,10 +1,8 @@
 import "./App.css";
-import  Login  from "./auth/login";
-
 function App() {
   return (
     <>
-      <Login />
+      <h1>Rupesh</h1>
     </>
   );
 }
