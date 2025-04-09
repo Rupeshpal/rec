@@ -120,7 +120,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center h-12 px-6 max-w-screen-xl mx-auto">
         {/* Logo linking to dashboard */}
         <Link to="/dashboard" className="text-xl font-bold ">
-         🛂 Jigyasha Hospital
+         SwastikHMS
         </Link>
 
         {/* Navigation */}
