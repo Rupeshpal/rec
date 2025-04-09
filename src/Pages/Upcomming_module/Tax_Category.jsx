@@ -3,11 +3,36 @@ import { Save } from "lucide-react";
 
 const AddTaxCategoryModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleModal = () => setIsOpen(!isOpen);
+  const [name, setName] = useState("");
+  const [percentage, setPercentage] = useState("");
+  const [taxCategories, setTaxCategories] = useState([
+    { name: "NON TAXABLE", percentage: 0 },
+  ]);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+    setName("");        // Reset on open/close
+    setPercentage("");
+  };
+
+ 
+
+  const HandleSave = () => {
+    if(name && percentage !== ""){
+      const newCategory = {
+        name,
+         percentage:  parseFloat(percentage),
+      };
+   setTaxCategories([...taxCategories , newCategory]);
+      toggleModal();
+    }
+     else{
+      alert("Please fill out all fields");
+     }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      {/* Background Content */}
       <div className="max-w-4xl mx-auto bg-white shadow rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Tax Category List</h2>
         <div className="flex justify-between items-center mb-4">
@@ -27,14 +52,18 @@ const AddTaxCategoryModal = () => {
           <thead className="bg-gray-200">
             <tr>
               <th className="p-2 border">Name</th>
+              <th className="p-2 border">Percentage</th>
               <th className="p-2 border">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="p-2 border">NON TAXABLE</td>
-              <td className="p-2 border">Edit</td>
-            </tr>
+            {taxCategories.map((item, index) => (
+              <tr key={index}>
+                <td className="p-2 border">{item.name}</td>
+                <td className="p-2 border">{item.percentage}%</td>
+                <td className="p-2 border">Edit</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -43,23 +72,25 @@ const AddTaxCategoryModal = () => {
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded shadow-lg w-full max-w-md">
-            <div className="bg-teal-700 text-white px-4 py-2 rounded-t flex justify-between items-center">
+            <div className="bg-white text-black px-4 py-2 rounded-t flex justify-between items-center">
               <h2 className="font-semibold">Add Tax Category</h2>
               <button
                 onClick={toggleModal}
-                className="text-white text-xl leading-none"
+                className="text-black text-xl leading-none"
               >
                 &times;
               </button>
             </div>
 
-            <div className="bg-cyan-100 px-6 py-4">
+            <div className="bg-white px-6 py-4">
               <div className="mb-4">
                 <label className="block font-semibold">
                   Name <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="border rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-cyan-500"
                 />
               </div>
@@ -71,19 +102,24 @@ const AddTaxCategoryModal = () => {
                 <div className="relative">
                   <input
                     type="number"
+                    value={percentage}
+                    onChange={(e) => setPercentage(e.target.value)}
                     className="border rounded p-2 w-full pr-10 focus:outline-none focus:ring-2 focus:ring-cyan-500"
                   />
                   <span className="absolute right-3 top-2.5">%</span>
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-2">
                 <button
-                  className="bg-gray-300 text-black px-4 py-2 rounded flex items-center gap-2"
-                  onClick={() => {
-                    // Save logic here
-                    toggleModal();
-                  }}
+                  className="bg-gray-300 text-black px-4 py-2 rounded"
+                  onClick={toggleModal}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2"
+                  onClick={HandleSave}
                 >
                   <Save size={16} /> Save
                 </button>

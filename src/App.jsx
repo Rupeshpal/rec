@@ -5,7 +5,7 @@ import Topbar from "./Components/Topbar";
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import './index.css';
-const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Dashboard = lazy(() => import("./Components/Dashboard"));
 const Pathology = lazy(() => import("./Components/Pathology"));
 const CulturalTest = lazy(() => import("./pages/Billing/CulturalTest"));
 const ReportSearch = lazy(() => import("./pages/Billing/ReportSearch"));
@@ -14,11 +14,12 @@ const EMR = lazy(() => import("./pages/Billing/EMR"));
 const Billing = lazy(() => import("./pages/Billing/Billing-Profile"));
 const Tabular = lazy(() => import("./pages/Billing/Tabular"));
 const CumulativeData = lazy(() => import("./pages/Billing/CumulativeData"));
-const Appointments = lazy(() => import("./pages/Billing/Appointments"));
 const Services = lazy(() => import("./pages/Billing/Services-Billing"));
 const Refund = lazy(() => import("./Pages/Billing/Refound"))
-const Test = lazy(() => import("./Pages/Setup/Add_Services"))
+const Test = lazy(() => import("./Components/Add_Services"))
 const Charge = lazy(() => import("./Pages/Setup/Services_charge_list"))
+const Department_setting = lazy(() => import("./Pages/Setup/Department_setting"))
+const Patholgy_b = lazy(() => import("./Pages/Department/Pathology_Bill"));
 const OpdReport = lazy(() => import("./Pages/Upcomming_module/Opd_report_blance")); 
 const Pathloggy_S = lazy(() => import("./Pages/Upcomming_module/Pathloggy_Setup"))
 const Opd_R = lazy(() => import("./Pages/Upcomming_module/OpdReport"))
@@ -65,17 +66,18 @@ const App = () => {
                         <Route path="/cumulative-data" element={<CumulativeData />} />
                         <Route path="/Billing" element={<Billing />} />
                         <Route path="/services" element={<Services />} />
-                        <Route path="/appointments" element={<Appointments />} />
                         <Route path="/Refund" element={<Refund/>} />
                         <Route path="/Test" element={<Test/>}/>
                         <Route path="/Service-Charge" element={<Charge/>}/>
                         <Route path="/Setup_Pathloggy" element={<Pathloggy_S/>}/>
+                        <Route path="/Patholgy_b" element={<Patholgy_b/>}/>
                         <Route path="/OpdReport" element={<OpdReport/>}/>
                         <Route path="/Opd_Report" element={<Opd_R/>}/>
                         <Route path="/Opd_Patient" element={<Opd_patient/>}/>
                         <Route path="/Rlease" element={<Rlease/>}/>
                         <Route path="/ExternaL" element={<ExternaL/>}/>
                          <Route path="/Internal" element={<Internal/>}/>
+                         <Route path="/Department_s" element={<Department_setting/>}/>
                          <Route path="/Tax" element={<Tax/>}/>
                          <Route path="/Insurance" element={<Insurance/>}/>
                          <Route path="/Insurance_m" element={<Medicine/>}/>
