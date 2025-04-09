@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Pathology_Test_list from "./Pathology_Test_list";
-import Advance from "./Advance";
+import Pathalogy_parameter from "./Pathalogy_parameter";
 import Bed_transfer from "./Bed_transfer";
 
 const EMRPage = () => {
@@ -8,7 +8,7 @@ const EMRPage = () => {
 
   const tabs = [
     { key: "services", label: "Add Pathology Test", component: <Pathology_Test_list/>},
-    { key: "Advance", label: "Parameter & Category ", component: <Advance /> },
+    { key: "Advance", label: "Parameter & Category ", component: <Pathalogy_parameter /> },
     
    
   ];
