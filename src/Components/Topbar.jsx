@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -7,66 +7,56 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const closeTimeout = useRef(null);
 
+  const location = useLocation();  // Get the current route location
+
+  // Disable dropdowns on the "NotFound" page or invalid routes
+  const disableDropdown = location.pathname === "*" || location.pathname === "/notfound";
+
   const menus = [
-
-      // Billing
-      {
-        name: "Billing",
-        children: [
-          { name: "OPD Ticket", path: "/opd-ticket" },
-          { name: "EMR & IPD", path: "/emr" },
-          {
-            name: "My Statement",
-            children: [
-              { name: "Tabular", path: "/tabular" },
-              { name: "Cumulative Data", path: "/cumulative-data" },
-            ],
-          },
-          { name: "Billing Profile", path: "/Billing" },
-          { name: "Services Billing", path: "/Services" },
-          { name: "Refund", path: "/Refund" },
-        ],
-      },
-
- // Department
- {
-  name: "Department",
-  children: [
-    { name: "All Departments", path: "/departments" },
-    { name: "Add Department", path: "/add-department" 
-    },
     {
-      name: "Pathology",
+      name: "Billing",
       children: [
-        { name: "Add Tests Result", path: "/Patholgy_b" },
-        { name: "Reports", path: "/pathology/reports" },
-        { name: "Lab Setup", path: "/pathology/setup" },
+        { name: "OPD Ticket", path: "/opd-ticket" },
+        { name: "EMR & IPD", path: "/emr" },
+        {
+          name: "My Statement",
+          children: [
+            { name: "Tabular", path: "/tabular" },
+            { name: "Cumulative Data", path: "/cumulative-data" },
+          ],
+        },
+        { name: "Billing Profile", path: "/Billing" },
+        { name: "Services Billing", path: "/Services" },
+        { name: "Refund", path: "/Refund" },
       ],
     },
-  ],
-},
-// Opd
-{ name: "OPD", path: "/opd" },
-    // Setup
-
-    
+    {
+      name: "Department",
+      children: [
+        { name: "All Departments", path: "/departments" },
+        { name: "Add Department", path: "/add-department" },
+        {
+          name: "Pathology",
+          children: [
+            { name: "Add Tests Result", path: "/Patholgy_b" },
+            { name: "Reports", path: "/pathology/reports" },
+            { name: "Lab Setup", path: "/pathology/setup" },
+          ],
+        },
+      ],
+    },
+    { name: "OPD", path: "/opd" },
     { name: "IPD", path: "/ipd" },
-
     { name: "Pharmacy", path: "/pharmacy" },
-
     { name: "Insurance", path: "/insurance" },
     { name: "SSF", path: "/ssf" },
-
     {
       name: "Setup",
       children: [
-      
         { name: "Service Charge", path: "/Service-Charge" },
-        {name: "Department Setting" , path:"/Department_s"}
+        { name: "Department Setting", path: "/Department_s" },
       ],
     },
-
-    
     { name: "Reports", path: "/reports" },
   ];
 
@@ -77,40 +67,40 @@ const Navbar = () => {
   }, []);
 
   const handleMouseEnter = (dropdown) => {
-    if (!isMobile) {
+    if (!isMobile && !disableDropdown) {
       clearTimeout(closeTimeout.current);
       setOpenDropdown(dropdown);
     }
   };
 
   const handleMouseLeave = () => {
-    if (!isMobile) {
+    if (!isMobile && !disableDropdown) {
       closeTimeout.current = setTimeout(() => setOpenDropdown(null), 300);
     }
   };
 
   const handleNestedMouseEnter = (nestedDropdown) => {
-    if (!isMobile) {
+    if (!isMobile && !disableDropdown) {
       clearTimeout(closeTimeout.current);
       setOpenNestedDropdown(nestedDropdown);
     }
   };
 
   const handleNestedMouseLeave = () => {
-    if (!isMobile) {
+    if (!isMobile && !disableDropdown) {
       closeTimeout.current = setTimeout(() => setOpenNestedDropdown(null), 300);
     }
   };
 
   const toggleDropdown = (dropdown) => {
-    if (isMobile) {
+    if (isMobile && !disableDropdown) {
       setOpenDropdown(openDropdown === dropdown ? null : dropdown);
       setOpenNestedDropdown(null);
     }
   };
 
   const toggleNestedDropdown = (nestedDropdown) => {
-    if (isMobile) {
+    if (isMobile && !disableDropdown) {
       setOpenNestedDropdown(openNestedDropdown === nestedDropdown ? null : nestedDropdown);
     }
   };
@@ -118,12 +108,18 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
       <div className="flex justify-between items-center h-12 px-6 max-w-screen-xl mx-auto">
-        {/* Logo linking to dashboard */}
-        <Link to="/dashboard" className="text-xl font-bold ">
-         SwastikHMS
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+            <img
+              src="/SwasticHMS.png"
+              alt="SwastikHMS Logo"
+              className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+              style={{ visibility: 'visible' }}
+            />
+            <span className="hidden sm:inline">SwastikHMS</span>
+          </Link>
+        </div>
 
-        {/* Navigation */}
         <nav className="flex justify-center items-center gap-6">
           {menus.map((menu, index) => (
             <div
@@ -143,12 +139,12 @@ const Navbar = () => {
                 <button
                   className="hover:bg-teal-800 p-2 rounded transition"
                   onClick={() => toggleDropdown(menu.name)}
+                  disabled={disableDropdown}
                 >
                   {menu.name}
                 </button>
               )}
 
-              {/* First-level dropdown */}
               {menu.children && openDropdown === menu.name && (
                 <div className="absolute left-0 mt-2 w-52 bg-teal-500 rounded shadow-md border border-gray-300 z-10">
                   {menu.children.map((child, i) =>
@@ -162,11 +158,11 @@ const Navbar = () => {
                         <button
                           className="block w-full text-left px-2 py-1 text-sm hover:bg-teal-600 transition border-b border-gray-300"
                           onClick={() => toggleNestedDropdown(child.name)}
+                          disabled={disableDropdown}
                         >
                           {child.name}
                         </button>
 
-                        {/* Sub-dropdown */}
                         {openNestedDropdown === child.name && (
                           <div className="absolute left-full top-0 w-52 bg-teal-400 rounded shadow-md border border-gray-300 z-20">
                             {child.children.map((nested, j) => (
@@ -174,6 +170,7 @@ const Navbar = () => {
                                 key={j}
                                 to={nested.path}
                                 className="block px-2 py-1 text-sm hover:bg-teal-500 transition border-b border-gray-200 last:border-b-0"
+                                disabled={disableDropdown}
                               >
                                 {nested.name}
                               </Link>
@@ -186,6 +183,7 @@ const Navbar = () => {
                         key={i}
                         to={child.path}
                         className="block px-2 py-1 text-sm hover:bg-teal-600 transition border-b border-gray-200 last:border-b-0"
+                        disabled={disableDropdown}
                       >
                         {child.name}
                       </Link>

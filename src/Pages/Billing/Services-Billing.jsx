@@ -8,8 +8,10 @@ const EMRPage = () => {
 
 
   return (
+    
     <div className="bg-gray-100 min-h-screen w-full">
       {/* Tabs Navigation */}
+
       <div className="px-6 mt-8 w-full border-b pb-1">
         <div className="flex space-x-6 text-md font-semibold border-b-2">
           <button

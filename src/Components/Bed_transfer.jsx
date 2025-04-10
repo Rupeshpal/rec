@@ -13,6 +13,7 @@ const EMRPage = () => {
         Bed Information
             
                </div>
+               
     </div>
   );
 };
