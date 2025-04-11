@@ -6,10 +6,9 @@ const Navbar = () => {
   const [openNestedDropdown, setOpenNestedDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const closeTimeout = useRef(null);
+  const nestedRef = useRef(null);
 
-  const location = useLocation();  // Get the current route location
-
-  // Disable dropdowns on the "NotFound" page or invalid routes
+  const location = useLocation();
   const disableDropdown = location.pathname === "*" || location.pathname === "/notfound";
 
   const menus = [
@@ -66,6 +65,14 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (nestedRef.current && openNestedDropdown) {
+      const rect = nestedRef.current.getBoundingClientRect();
+      const shouldFlip = rect.right > window.innerWidth;
+      nestedRef.current.style.left = shouldFlip ? "-224px" : "100%";
+    }
+  }, [openNestedDropdown]);
+
   const handleMouseEnter = (dropdown) => {
     if (!isMobile && !disableDropdown) {
       clearTimeout(closeTimeout.current);
@@ -75,7 +82,10 @@ const Navbar = () => {
 
   const handleMouseLeave = () => {
     if (!isMobile && !disableDropdown) {
-      closeTimeout.current = setTimeout(() => setOpenDropdown(null), 300);
+      closeTimeout.current = setTimeout(() => {
+        setOpenDropdown(null);
+        setOpenNestedDropdown(null);
+      }, 300);
     }
   };
 
@@ -107,18 +117,15 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
-      <div className="flex justify-between items-center h-12 px-6 max-w-screen-xl mx-auto">
-        <div className="flex items-center gap-2">
-          <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
-            <img
-              src="/SwasticHMS.png"
-              alt="SwastikHMS Logo"
-              className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
-              style={{ visibility: 'visible' }}
-            />
-            <span className="hidden sm:inline">SwastikHMS</span>
-          </Link>
-        </div>
+      <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
+        <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+          <img
+            src="/SwasticHMS.png"
+            alt="SwastikHMS Logo"
+            className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+          />
+          <span className="hidden sm:inline">SwastikHMS</span>
+        </Link>
 
         <nav className="flex justify-center items-center gap-6">
           {menus.map((menu, index) => (
@@ -129,10 +136,7 @@ const Navbar = () => {
               onMouseLeave={handleMouseLeave}
             >
               {menu.path ? (
-                <Link
-                  to={menu.path}
-                  className="hover:bg-teal-800 p-2 rounded transition"
-                >
+                <Link to={menu.path} className="hover:bg-teal-800 p-2 rounded transition">
                   {menu.name}
                 </Link>
               ) : (
@@ -146,7 +150,7 @@ const Navbar = () => {
               )}
 
               {menu.children && openDropdown === menu.name && (
-                <div className="absolute left-0 mt-2 w-52 bg-teal-500 rounded shadow-md border border-gray-300 z-10">
+                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-52 bg-teal-500 rounded shadow-md border border-gray-300 z-10">
                   {menu.children.map((child, i) =>
                     child.children ? (
                       <div
@@ -156,21 +160,23 @@ const Navbar = () => {
                         onMouseLeave={handleNestedMouseLeave}
                       >
                         <button
-                          className="block w-full text-left px-2 py-1 text-sm hover:bg-teal-600 transition border-b border-gray-300"
+                          className="block w-full text-left px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-300"
                           onClick={() => toggleNestedDropdown(child.name)}
-                          disabled={disableDropdown}
                         >
                           {child.name}
                         </button>
 
                         {openNestedDropdown === child.name && (
-                          <div className="absolute left-full top-0 w-52 bg-teal-400 rounded shadow-md border border-gray-300 z-20">
+                          <div
+                            ref={nestedRef}
+                            className="absolute top-0 w-56 bg-teal-400 rounded shadow-lg border border-gray-300 z-20 transition-all duration-300"
+                            style={{ left: "100%" }}
+                          >
                             {child.children.map((nested, j) => (
                               <Link
                                 key={j}
                                 to={nested.path}
-                                className="block px-2 py-1 text-sm hover:bg-teal-500 transition border-b border-gray-200 last:border-b-0"
-                                disabled={disableDropdown}
+                                className="block px-3 py-2 text-sm hover:bg-teal-500 transition border-b border-gray-200 last:border-b-0"
                               >
                                 {nested.name}
                               </Link>
@@ -182,8 +188,7 @@ const Navbar = () => {
                       <Link
                         key={i}
                         to={child.path}
-                        className="block px-2 py-1 text-sm hover:bg-teal-600 transition border-b border-gray-200 last:border-b-0"
-                        disabled={disableDropdown}
+                        className="block px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-200 last:border-b-0"
                       >
                         {child.name}
                       </Link>

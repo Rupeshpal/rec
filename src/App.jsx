@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Topbar from "./Components/Topbar";
 import AppRoutes from "./Routes/AppRoutes";
+import Footer from "./Components/Footer";
 const App = () => {
     const [loading, setLoading] = useState(true);
     const location = useLocation();
@@ -27,6 +28,7 @@ const App = () => {
       <div className="p-4">
         <AppRoutes />
       </div>
+      <Footer />
         </>
     );
 };
