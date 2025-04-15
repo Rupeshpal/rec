@@ -17,6 +17,8 @@ const Navbar = () => {
       children: [
         { name: "OPD Ticket", path: "/opd-ticket" },
         { name: "EMR & IPD", path: "/emr" },
+        {name : "Discharge_Summary", path:"/Discharge"},
+        {name : "Discount Scheme", path:"/Discount"},
         {
           name: "My Statement",
           children: [
@@ -116,7 +118,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
+    <header className="fixed top-0 left-0 w-full bg-teal-700-var text-white shadow-md z-50">
       <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
         <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
           <img

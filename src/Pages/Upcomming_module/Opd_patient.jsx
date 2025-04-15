@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Eye, Edit2, Trash2 } from "lucide-react";
 
 const FilterOPDPatients = () => {
   const data = [
+    // Your existing data...
     {
       opdId: "OPDN20044",
       name: "Sarswati Tharu (11778)",
@@ -51,8 +52,19 @@ const FilterOPDPatients = () => {
       consultant: "Dr. Tejendra Chaudhary (EMP15)",
       status: "Registered",
     },
-    // Add more entries as needed
+    // Add more entries here if needed
   ];
+
+  const itemsPerPage = 2;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const startIdx = (currentPage - 1) * itemsPerPage;
+  const paginatedData = data.slice(startIdx, startIdx + itemsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="p-6 mt-10">
@@ -85,7 +97,7 @@ const FilterOPDPatients = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
+            {paginatedData.map((row, idx) => (
               <tr key={idx} className="border-t text-sm">
                 <td className="py-2 px-4 text-blue-600 font-semibold cursor-pointer">{row.opdId}</td>
                 <td className="py-2 px-4">{row.name}</td>
@@ -111,6 +123,21 @@ const FilterOPDPatients = () => {
             ))}
           </tbody>
         </table>
+
+        {/* Pagination */}
+        <div className="flex justify-center mt-4 space-x-2">
+          {Array.from({ length: totalPages }, (_, idx) => (
+            <button
+              key={idx}
+              onClick={() => handlePageChange(idx + 1)}
+              className={`px-3 py-1 rounded border ${
+                currentPage === idx + 1 ? "bg-blue-500 text-white" : "bg-white"
+              }`}
+            >
+              {idx + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

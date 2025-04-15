@@ -48,7 +48,7 @@ const OPDReport = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="p-6 mt-10">
       <h2 className="text-xl font-bold mb-4 text-green-700">OPD Report</h2>
 
       {/* Filters */}

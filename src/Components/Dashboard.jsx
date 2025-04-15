@@ -78,7 +78,7 @@ const Dashboard = () => {
   }, []); // Empty dependency array ensures the effect runs once on mount
 
   return (
-<div className="p-6 mt-8 w-full  mx-auto">
+<div className="p-6 mb-8 mt-8 w-full  mx-auto">
 
       <h1 className="text-2xl font-bold text-center">Hospital Dashboard</h1>
 
@@ -128,7 +128,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="bg-gray-100 p-6 shadow-md rounded-lg mt-8">
+      <div className="bg-gray-100 p-6   shadow-md rounded-lg mt-10">
         <h2 className="text-xl font-semibold text-gray-700 mb-4">Patient Appointments</h2>
         <table className="min-w-full bg-gray-100 table-auto">
           <thead>

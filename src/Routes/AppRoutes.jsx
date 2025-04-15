@@ -27,8 +27,10 @@ const ExternaL = lazy(() => import("../Pages/Upcomming_module/External_Mortuary"
 const Internal = lazy(() => import("../Pages/Upcomming_module/Internal_Mortuary"));
 const Tax = lazy(() => import("../Pages/Upcomming_module/Tax_Category"));
 const Insurance = lazy(() => import("../Pages/Upcomming_module/Insurance_Records"));
+const Discharge = lazy(() => import("../Pages/Billing/Discharge_Summary"));
+const Discount = lazy(() => import("../Pages/Billing/Discount_Scheme"));
 const Medicine = lazy(() => import("../Pages/Upcomming_module/Isurance_Medicine"));
-const ScheduleAppointment = lazy(() => import("../pages/Billing/ScheduleAppointment"));
+
 const NotFound = lazy(() => import("../Components/NotFound"));
 
 const AppRoutes = () => {
@@ -60,8 +62,9 @@ const AppRoutes = () => {
         <Route path="/Department_s" element={<Department_setting />} />
         <Route path="/Tax" element={<Tax />} />
         <Route path="/Insurance" element={<Insurance />} />
+        <Route path="/Discharge" element={<Discharge />} />
+        <Route path="/Discount" element={<Discount />} />
         <Route path="/Insurance_m" element={<Medicine />} />
-        <Route path="/schedule" element={<ScheduleAppointment />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

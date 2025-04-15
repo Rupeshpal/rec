@@ -4,13 +4,19 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-br from-teal-800 to-cyan-900 text-white py-3 px-4 z-50 shadow-md">
+    <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-br bg-teal-700-var  text-white py-1 px-4 z-40 shadow-md">
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm sm:text-base">
         
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src="/SwasticHMS.png" alt="Logo" className="w-8 h-8" />
-          <span className="text-lg font-semibold">SwastikHMS</span>
+   <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+            <img
+              src="/SwasticHMS.png"
+              alt="SwastikHMS Logo"
+              className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+            />
+            <span className="hidden sm:inline">SwastikHMS</span>
+          </Link>
         </div>
 
         {/* Navigation Links */}
