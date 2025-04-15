@@ -46,9 +46,16 @@ const Navbar = () => {
         },
       ],
     },
-    { name: "OPD", path: "/opd" },
+    { name: "OPD", path: "/" },
     { name: "IPD", path: "/ipd" },
-    { name: "Pharmacy", path: "/pharmacy" },
+    { name: "Pharmacy",
+      children: [
+        { name: "Sales", path: "/opd" },
+        { name: "Sales Return", path: "/Sales"},
+        { name: "Purches", path: "/Phamacy" },
+      ], 
+      
+    },
     { name: "Insurance", path: "/insurance" },
     { name: "SSF", path: "/ssf" },
     {

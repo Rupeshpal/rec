@@ -4,6 +4,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
+<<<<<<< HEAD
     <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-br bg-teal-700-var  text-white py-1 px-4 z-40 shadow-md">
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm sm:text-base">
         
@@ -17,18 +18,27 @@ const Footer = () => {
             />
             <span className="hidden sm:inline">SwastikHMS</span>
           </Link>
+=======
+    <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-br from-teal-800 to-cyan-900 text-white py-1 px-4 z-50 shadow-md">
+      <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-4 text-sm sm:text-base">
+        
+        {/* Logo */}
+        <div className="flex items-center gap-2 flex-1 sm:flex-none justify-center sm:justify-start">
+          <img src="/SwasticHMS.png" alt="Logo" className="w-8 h-8" />
+          <span className="text-lg font-semibold">SwastikHMS</span>
+>>>>>>> 25eb732 (pharmacy Ui)
         </div>
 
         {/* Navigation Links */}
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link to="/about" className="hover:text-teal-300 transition">About</Link>
+        <div className="flex flex-wrap gap-4 justify-center flex-1 sm:flex-none">
+          {/* <Link to="/about" className="hover:text-teal-300 transition">About</Link>
           <Link to="/services" className="hover:text-teal-300 transition">Services</Link>
           <Link to="/contact" className="hover:text-teal-300 transition">Contact</Link>
-          <Link to="/privacy-policy" className="hover:text-teal-300 transition">Privacy</Link>
+          <Link to="/privacy-policy" className="hover:text-teal-300 transition">Privacy</Link> */}
         </div>
 
         {/* Social Icons */}
-        <div className="flex gap-3 text-lg">
+        {/* <div className="flex gap-3 text-lg justify-center sm:justify-start">
           <a
             href="https://facebook.com/yourpage"
             target="_blank"
@@ -61,7 +71,7 @@ const Footer = () => {
           >
             <FaInstagram />
           </a>
-        </div>
+        </div> */}
 
         {/* Copyright */}
         <div className="text-white/70 text-center w-full sm:w-auto">

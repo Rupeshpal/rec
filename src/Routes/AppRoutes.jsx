@@ -14,6 +14,7 @@ const Tabular = lazy(() => import("../pages/Billing/Tabular"));
 const CumulativeData = lazy(() => import("../pages/Billing/CumulativeData"));
 const Services = lazy(() => import("../pages/Billing/Services-Billing"));
 const Refund = lazy(() => import("../Pages/Billing/Refound"));
+const Opd = lazy(() => import("../Pages/Billing/OPd"));
 const Test = lazy(() => import("../Components/Add_Services"));
 const Charge = lazy(() => import("../Pages/Setup/Services_charge_list"));
 const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
@@ -30,7 +31,13 @@ const Insurance = lazy(() => import("../Pages/Upcomming_module/Insurance_Records
 const Discharge = lazy(() => import("../Pages/Billing/Discharge_Summary"));
 const Discount = lazy(() => import("../Pages/Billing/Discount_Scheme"));
 const Medicine = lazy(() => import("../Pages/Upcomming_module/Isurance_Medicine"));
+<<<<<<< HEAD
 
+=======
+const Phamacy = lazy(() => import("../Pages/Pharmacy/Phamacy"));
+const General_M = lazy(() => import("../Pages/Pharmacy/General_medicine_report"));
+const Sales = lazy(() => import("../Pages/Pharmacy/Sales_return"));
+>>>>>>> 25eb732 (pharmacy Ui)
 const NotFound = lazy(() => import("../Components/NotFound"));
 
 const AppRoutes = () => {
@@ -43,8 +50,12 @@ const AppRoutes = () => {
         <Route path="/cultural" element={<CulturalTest />} />
         <Route path="/report-search" element={<ReportSearch />} />
         <Route path="/opd-ticket" element={<OPDTicket />} />
+        <Route path="/opd" element={<Opd />} />
         <Route path="/emr" element={<EMR />} />
         <Route path="/tabular" element={<Tabular />} />
+         <Route path="/Phamacy" element={<Phamacy />} />
+         
+          <Route path="/General_M" element={<General_M />} />
         <Route path="/cumulative-data" element={<CumulativeData />} />
         <Route path="/Billing" element={<Billing />} />
         <Route path="/services" element={<Services />} />
@@ -65,6 +76,10 @@ const AppRoutes = () => {
         <Route path="/Discharge" element={<Discharge />} />
         <Route path="/Discount" element={<Discount />} />
         <Route path="/Insurance_m" element={<Medicine />} />
+<<<<<<< HEAD
+=======
+        <Route path="/Sales" element={<Sales />} />
+>>>>>>> 25eb732 (pharmacy Ui)
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
