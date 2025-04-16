@@ -96,24 +96,23 @@ const PathologyParameterList = () => {
           <table className="min-w-full text-sm border border-gray-300">
             <thead className="bg-teal-100 text-gray-700">
               <tr>
-                <th className="p-2 border">Test Code</th>
                 <th className="p-2 border">Parameter Name</th>
                 <th className="p-2 border">Ref. Range</th>
                 <th className="p-2 border">Unit</th>
                 <th className="p-2 border">Description</th>
-                <th className="p-2 border">Method</th>
+               
                 <th className="p-2 border">Action</th>
               </tr>
             </thead>
             <tbody>
               {filteredParameters.map((param, index) => (
                 <tr key={index} className="hover:bg-gray-100">
-                  <td className="p-2 border">{param.code}</td>
+                  
                   <td className="p-2 border">{param.name}</td>
                   <td className="p-2 border">{param.range}</td>
                   <td className="p-2 border">{param.unit}</td>
                   <td className="p-2 border">{param.description}</td>
-                  <td className="p-2 border">{param.method}</td>
+               
                   <td className="p-2 border text-center">
                     <button className="text-blue-500 hover:text-blue-700">
                       <Pencil size={16} />

@@ -9,8 +9,6 @@ module.exports = {
     extend: {
       colors: {
         'teal-700-var': colors.teal[700],  // Using the correct color import
-        secondary: '#9333EA',
-        accent: '#F59E0B',
       },
       spacing: {
         '128': '32rem',

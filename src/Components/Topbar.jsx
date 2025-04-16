@@ -34,8 +34,8 @@ const Navbar = () => {
     {
       name: "Department",
       children: [
-        { name: "All Departments", path: "/departments" },
-        { name: "Add Department", path: "/add-department" },
+        { name: "Pathalogy Patient", path: "/Pathalogy_Patient" },
+        { name: "Caltural Report", path: "/Caltural_Report" },
         {
           name: "Pathology",
           children: [
@@ -53,6 +53,7 @@ const Navbar = () => {
         { name: "Sales", path: "/opd" },
         { name: "Sales Return", path: "/Sales"},
         { name: "Purches", path: "/Phamacy" },
+        { name: "Purches Report", path: "/Phamacy_report" },
       ], 
       
     },

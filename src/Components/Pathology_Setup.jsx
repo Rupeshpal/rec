@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import Pathology_Test_list from "./Pathology_Test_list";
 import Pathalogy_parameter from "./Pathalogy_parameter";
-import Bed_transfer from "./Bed_transfer";
+import Pathology from "./Pathology";
+import Parameter_Unit from "./Parameter_Unit";
 
 const EMRPage = () => {
   const [activeTab, setActiveTab] = useState("services");
 
   const tabs = [
-    { key: "services", label: "Add Pathology Test", component: <Pathology_Test_list/>},
-    { key: "Advance", label: "Parameter & Category ", component: <Pathalogy_parameter /> },
-    
+    { key: "services", label: " Pathology Test List", component: <Pathology_Test_list/>},
+    { key: "Advance", label: "Parameter & Category ", component: <Pathology /> },
+    { key: "Unit", label: "Unit", component: <Parameter_Unit /> },
+    { key: "Parameter", label: "Parameter", component: <Pathalogy_parameter /> },
    
   ];
 

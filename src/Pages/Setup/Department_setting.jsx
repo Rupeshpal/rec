@@ -10,7 +10,7 @@ const EMRPage = () => {
     { key: "Pathology", label: "Pathology", component: <Pathology_Setup/>},
     { key: "Advance", label: "Radiology", component: <Radiology_Setup /> },
  
-    { key: "Discharge", label: "CT-Scane", component: <div>Discharge Summary</div> },
+    { key: "Discharge", label: "CT Scan", component: <div>Discharge Summary</div> },
     { key: "Bed_Tranfer", label: "Add Service Charge", component: < Add_Services/> },
   ];
 

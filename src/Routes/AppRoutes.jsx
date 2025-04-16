@@ -19,6 +19,7 @@ const Test = lazy(() => import("../Components/Add_Services"));
 const Charge = lazy(() => import("../Pages/Setup/Services_charge_list"));
 const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
 const Patholgy_b = lazy(() => import("../Pages/Department/Pathology_Bill"));
+const Caltural_Report = lazy(() => import("../Pages/Department/Caltural_Report"));
 const OpdReport = lazy(() => import("../Pages/Upcomming_module/Opd_report_blance"));
 const Pathloggy_S = lazy(() => import("../Pages/Upcomming_module/Pathloggy_Setup"));
 const Opd_R = lazy(() => import("../Pages/Upcomming_module/OpdReport"));
@@ -28,16 +29,12 @@ const ExternaL = lazy(() => import("../Pages/Upcomming_module/External_Mortuary"
 const Internal = lazy(() => import("../Pages/Upcomming_module/Internal_Mortuary"));
 const Tax = lazy(() => import("../Pages/Upcomming_module/Tax_Category"));
 const Insurance = lazy(() => import("../Pages/Upcomming_module/Insurance_Records"));
-const Discharge = lazy(() => import("../Pages/Billing/Discharge_Summary"));
-const Discount = lazy(() => import("../Pages/Billing/Discount_Scheme"));
 const Medicine = lazy(() => import("../Pages/Upcomming_module/Isurance_Medicine"));
-<<<<<<< HEAD
-
-=======
 const Phamacy = lazy(() => import("../Pages/Pharmacy/Phamacy"));
+const Phamacy_report = lazy(() => import("../Pages/Pharmacy/Pharamacy_Report"));
+const Pathalogy_Patient = lazy(() => import("../Pages/Department/Pathalogy_Patient"));
 const General_M = lazy(() => import("../Pages/Pharmacy/General_medicine_report"));
 const Sales = lazy(() => import("../Pages/Pharmacy/Sales_return"));
->>>>>>> 25eb732 (pharmacy Ui)
 const NotFound = lazy(() => import("../Components/NotFound"));
 
 const AppRoutes = () => {
@@ -53,9 +50,8 @@ const AppRoutes = () => {
         <Route path="/opd" element={<Opd />} />
         <Route path="/emr" element={<EMR />} />
         <Route path="/tabular" element={<Tabular />} />
-         <Route path="/Phamacy" element={<Phamacy />} />
-         
-          <Route path="/General_M" element={<General_M />} />
+        <Route path="/Phamacy" element={<Phamacy />} />
+        <Route path="/General_M" element={<General_M />} />
         <Route path="/cumulative-data" element={<CumulativeData />} />
         <Route path="/Billing" element={<Billing />} />
         <Route path="/services" element={<Services />} />
@@ -63,23 +59,21 @@ const AppRoutes = () => {
         <Route path="/Test" element={<Test />} />
         <Route path="/Service-Charge" element={<Charge />} />
         <Route path="/Setup_Pathloggy" element={<Pathloggy_S />} />
+        <Route path="/Caltural_Report" element={<Caltural_Report />} />
         <Route path="/Patholgy_b" element={<Patholgy_b />} />
         <Route path="/OpdReport" element={<OpdReport />} />
         <Route path="/Opd_Report" element={<Opd_R />} />
         <Route path="/Opd_Patient" element={<Opd_patient />} />
         <Route path="/Rlease" element={<Rlease />} />
         <Route path="/ExternaL" element={<ExternaL />} />
+        <Route path="/Phamacy_report" element={<Phamacy_report />} />
+        <Route path="/Pathalogy_Patient" element={<Pathalogy_Patient />} />
         <Route path="/Internal" element={<Internal />} />
         <Route path="/Department_s" element={<Department_setting />} />
         <Route path="/Tax" element={<Tax />} />
         <Route path="/Insurance" element={<Insurance />} />
-        <Route path="/Discharge" element={<Discharge />} />
-        <Route path="/Discount" element={<Discount />} />
         <Route path="/Insurance_m" element={<Medicine />} />
-<<<<<<< HEAD
-=======
         <Route path="/Sales" element={<Sales />} />
->>>>>>> 25eb732 (pharmacy Ui)
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
