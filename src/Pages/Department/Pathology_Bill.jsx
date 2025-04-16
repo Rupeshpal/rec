@@ -101,31 +101,25 @@ const PathologyBill = () => {
 {showIcon && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div className="bg-white w-11/12 md:w-5/6 lg:w-4/5 max-h-[90vh] overflow-y-auto p-4 rounded shadow-lg">
-      <div className="bg-teal-700 flex  text-white px-4 py-2 font-semibold rounded-t">
-       <h4> Bill Details </h4>
-     <div>
-     <div className=" flex flex-row">
-     <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm">
-            Add/Edit Collection Person
-          </button>
-     </div>
-     <div>
-     <button className="bg-green-500 text-white px-3 py-1 rounded text-sm">
-            Report Entry
-          </button>
-     </div>
-     <div>
-     <button className="bg-green-600 text-white px-3 py-1 rounded text-sm">
-            Report Print
-          </button>
-     </div>
-     </div>
-     <div>
-     <button className="bg-gray-700 text-white px-3 py-1 rounded text-sm">
-            Barcode
-          </button>
-     </div>
-      </div>
+    <div className="bg-teal-300 text-black px-4 py-2 font-semibold rounded-t flex justify-between items-center">
+  <h4>Bill Details</h4>
+  
+  <div className="flex gap-2 ml-auto">
+    <button className="bg-blue-300  text-white px-3 py-1 rounded text-sm">
+      Add/Edit Collection Person
+    </button>
+    <button className="bg-green-500  text-white px-3 py-1 rounded text-sm">
+      Report Entry
+    </button>
+    <button className="bg-green-600  text-white px-3 py-1 rounded text-sm">
+      Report Print
+    </button>
+    <button className="bg-gray-700  text-white px-3 py-1 rounded text-sm">
+      Barcode
+    </button>
+  </div>
+</div>
+
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4 text-sm bg-gray-50 border-b">
         <div><strong>Bill No:</strong></div>
         <div><strong>Service No:</strong> </div>
@@ -166,8 +160,8 @@ const PathologyBill = () => {
             <td className="border px-2 py-1 text-center">-</td>
             <td className="border px-2 py-1">Approved By :</td>
             <td className="border px-2 py-1 text-center flex gap-2 justify-center">
-              <button className="bg-teal-600 text-white text-xs px-2 py-1 rounded">➕</button>
-              <button className="bg-teal-600 text-white text-xs px-2 py-1 rounded">🖨️</button>
+              <button className=" text-white text-md outline px-2 py-1 rounded">➕</button>
+              <button className=" text-white text-md outline px-2 py-1 rounded">🖨️</button>
             </td>
           </tr>
         </tbody>
@@ -177,10 +171,10 @@ const PathologyBill = () => {
       <div className="flex justify-between items-center mt-4">
        
         <button
-          className="text-gray-600 hover:text-black text-lg"
+          className=" w-[10rem] ml-auto rounded-sm  bg-teal-700-var text-white hover:text-black text-lg"
           onClick={() => setIconModal(false)}
         >
-          ✖️
+          Cancel
         </button>
       </div>
     </div>
