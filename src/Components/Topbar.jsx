@@ -36,6 +36,7 @@ const Navbar = () => {
       children: [
         { name: "Pathalogy Patient", path: "/Pathalogy_Patient" },
         { name: "Caltural Report", path: "/Caltural_Report" },
+        { name: "Hospital Department", path: "/Department" },
         {
           name: "Pathology",
           children: [

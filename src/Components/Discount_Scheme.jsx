@@ -102,11 +102,11 @@ const DiscountSchemeTable = () => {
                 placeholder="Scheme Name"
                 className="w-full border px-3 py-2 rounded"
               />
-              <input
-                type="text"
-                placeholder="Type"
-                className="w-full border px-3 py-2 rounded"
-              />
+             <select className="w-full border px-3 py-2 rounded">
+              <option disabled value="">Discount Type</option>
+              <option value="">Fixed Amount</option>
+              <option value="">%</option>
+             </select>
               <input
                 type="number"
                 placeholder="Discount %"

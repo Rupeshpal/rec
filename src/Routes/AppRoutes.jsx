@@ -17,6 +17,7 @@ const Refund = lazy(() => import("../Pages/Billing/Refound"));
 const Opd = lazy(() => import("../Pages/Billing/OPd"));
 const Test = lazy(() => import("../Components/Add_Services"));
 const Discount_Scheme  = lazy(() => import("../Components/Discount_Scheme"));
+const Department  = lazy(() => import("../Components/Department"));
 const Charge = lazy(() => import("../Pages/Setup/Services_charge_list"));
 const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
 const Patholgy_b = lazy(() => import("../Pages/Department/Pathology_Bill"));
@@ -53,6 +54,7 @@ const AppRoutes = () => {
         <Route path="/tabular" element={<Tabular />} />
         <Route path="/Phamacy" element={<Phamacy />} />
         <Route path="/General_M" element={<General_M />} />
+        <Route path="/Department" element={<Department />} />
         <Route path="/cumulative-data" element={<CumulativeData />} />
         <Route path="/Billing" element={<Billing />} />
         <Route path="/services" element={<Services />} />
