@@ -18,6 +18,7 @@ const Opd = lazy(() => import("../Pages/Billing/OPd"));
 const Test = lazy(() => import("../Components/Add_Services"));
 const Discount_Scheme  = lazy(() => import("../Components/Discount_Scheme"));
 const Department  = lazy(() => import("../Components/Department"));
+const Login  = lazy(() => import("../Components/Login"));
 const Charge = lazy(() => import("../Pages/Setup/Services_charge_list"));
 const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
 const Patholgy_b = lazy(() => import("../Pages/Department/Pathology_Bill"));
@@ -60,6 +61,7 @@ const AppRoutes = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/Refund" element={<Refund />} />
         <Route path="/Test" element={<Test />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/Discount_Scheme" element={<Discount_Scheme />} />
         <Route path="/Service-Charge" element={<Charge />} />
         <Route path="/Setup_Pathloggy" element={<Pathloggy_S />} />
