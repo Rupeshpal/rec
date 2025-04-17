@@ -63,6 +63,7 @@ const Navbar = () => {
       name: "Setup",
       children: [
         { name: " Charge", path: "/Service-Charge" },
+        { name: " Discount Scheme", path: "/Discount_Scheme" },
         { name: "Department Setting", path: "/Department_s" },
       ],
     },

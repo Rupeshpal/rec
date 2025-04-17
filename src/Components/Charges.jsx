@@ -116,30 +116,34 @@ const ChargesTable = () => {
               ×
             </button>
             <h2 className="text-lg text-black font-semibold mb-4">Add Charges</h2>
-            <div className="grid grid-cols-4 gap-4 ">
-              <div className="col-span-1">
-                <label className="block text-sm  text-black">Charge Type *</label>
-                <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
-                  <option>Select</option>
-                </select>
-              </div>
-              <div className="col-span-1">
-                <label className="block text-black text-sm">Charge Category *</label>
-                <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
-                  <option>Select</option>
-                </select>
-              </div>
-              <div className="col-span-1">
-                <label className="block text-black text-sm">Unit Type *</label>
-                <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
-                  <option>Select</option>
-                </select>
-              </div>
-              <div className="col-span-1">
-                <label className="block text-black text-sm">Charge Name *</label>
-                <input type="text" className="w-full text-black p-2 border border-gray-300 rounded mb-4" />
-              </div>
-              </div>
+            <div className="grid grid-cols-4 gap-4">
+  <div className="col-span-1">
+    <label className="block text-sm text-black">Charge Type *</label>
+    <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
+      <option>Select</option>
+    </select>
+  </div>
+  <div className="col-span-1">
+    <label className="block text-black text-sm">Charge Category *</label>
+    <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
+      <option>Select</option>
+    </select>
+  </div>
+  <div className="col-span-1">
+    <label className="block text-black text-sm">Unit Type *</label>
+    <select className="w-full text-black p-2 border border-gray-300 rounded mb-4">
+      <option>Select</option>
+    </select>
+  </div>
+  <div className="col-span-1">
+    <label className="block text-black text-sm">Charge Name *</label>
+    <input
+      type="text"
+      className="w-full text-black p-2 border border-gray-300 rounded mb-4"
+    />
+  </div>
+</div>
+
               <div className="grid grid-cols-3 gap-4 ">
               <div className="col-span-1">
                 <label className="block text-black text-sm">Tax Category *</label>
@@ -159,7 +163,6 @@ const ChargesTable = () => {
                 <input type="text" className="w-full text-black p-2 border border-gray-300 rounded mb-4" />
               </div>
               </div>
-              
               <div className="grid grid-cols-2 gap-4 ">
                 <div>
                 <div className="col-span-1">
