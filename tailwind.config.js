@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'teal-700-var': colors.teal[700],  // Using the correct color import
+        'teal-700-var': colors.teal[700],  
       },
       spacing: {
         '128': '32rem',

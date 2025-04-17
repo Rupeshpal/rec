@@ -27,7 +27,7 @@ const Opd_patient = lazy(() => import("../Pages/Upcomming_module/Opd_patient"));
 const Rlease = lazy(() => import("../Pages/Upcomming_module/Rlease_Mortuary"));
 const ExternaL = lazy(() => import("../Pages/Upcomming_module/External_Mortuary"));
 const Internal = lazy(() => import("../Pages/Upcomming_module/Internal_Mortuary"));
-const Tax = lazy(() => import("../Pages/Upcomming_module/Tax_Category"));
+
 const Insurance = lazy(() => import("../Pages/Upcomming_module/Insurance_Records"));
 const Medicine = lazy(() => import("../Pages/Upcomming_module/Isurance_Medicine"));
 const Phamacy = lazy(() => import("../Pages/Pharmacy/Phamacy"));
@@ -70,7 +70,6 @@ const AppRoutes = () => {
         <Route path="/Pathalogy_Patient" element={<Pathalogy_Patient />} />
         <Route path="/Internal" element={<Internal />} />
         <Route path="/Department_s" element={<Department_setting />} />
-        <Route path="/Tax" element={<Tax />} />
         <Route path="/Insurance" element={<Insurance />} />
         <Route path="/Insurance_m" element={<Medicine />} />
         <Route path="/Sales" element={<Sales />} />
