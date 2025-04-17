@@ -46,11 +46,10 @@ export default function DepartmentTable() {
       <table className="table-auto w-full border text-sm mb-4">
         <thead className="bg-gray-200">
           <tr>
+            <th className="border px-2 py-1">Name</th>
             <th className="border px-2 py-1">Department</th>
-            <th className="border px-2 py-1">OPD/IPD/EMR</th>
-            <th className="border px-2 py-1">Maternity</th>
-            <th className="border px-2 py-1">Sheet</th>
-            <th className="border px-2 py-1">Agreement</th>
+            <th className="border px-2 py-1">Ward</th>
+          
             <th className="border px-2 py-1">Actions</th>
           </tr>
         </thead>
@@ -60,8 +59,6 @@ export default function DepartmentTable() {
               <td className="border px-2 py-1">{dept.department}</td>
               <td className="border px-2 py-1">{dept.type}</td>
               <td className="border px-2 py-1">{dept.maternity}</td>
-              <td className="border px-2 py-1">{dept.sheet}</td>
-              <td className="border px-2 py-1">{dept.agreement}</td>
               <td className="border px-2 py-1">✎ ❌</td>
             </tr>
           ))}
@@ -78,15 +75,9 @@ export default function DepartmentTable() {
           <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-xl">
             <h3 className="text-lg font-bold mb-4">Add Department</h3>
 
-            <label className="block mb-1 text-sm font-medium">Department Name*</label>
-            <input
-              type="text"
-              placeholder="e.g., Emergency"
-              onChange={(e) => setNewDept({ ...newDept, type: e.target.value })}
-              className="border px-3 py-2 w-full mb-4"
-            />
+           
 
-            <label className="block mb-1 text-sm font-medium">Sheet</label>
+            <label className="block mb-1 text-sm font-medium">Doctor</label>
             <select
               value={newDept.sheet}
               onChange={(e) => setNewDept({ ...newDept, sheet: e.target.value })}
@@ -96,33 +87,9 @@ export default function DepartmentTable() {
               <option value="detailed">Detailed</option>
             </select>
 
-            <div className="grid gap-4 grid-cols-2">
-              <div>
-                <label className="block mb-1 text-sm font-medium">Is Maternity*</label>
-                <select
-                  value={newDept.maternity}
-                  onChange={(e) => setNewDept({ ...newDept, maternity: e.target.value })}
-                  className="border px-3 py-2 w-full mb-4"
-                >
-                  <option value="no">No</option>
-                  <option value="yes">Yes</option>
-                </select>
-              </div>
-              <div>
-                <label className="block mb-1 text-sm font-medium">Agreement*</label>
-                <select
-                  value={newDept.agreement}
-                  onChange={(e) => setNewDept({ ...newDept, agreement: e.target.value })}
-                  className="border px-3 py-2 w-full mb-4"
-                >
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
-                </select>
-              </div>
-            </div>
 
             <label className="block mb-2 text-sm font-medium text-gray-700">
-              Select Departments <span className="text-red-500">*</span>
+              Ward <span className="text-red-500">*</span>
             </label>
             <Select
               options={departmentOptions}
@@ -131,7 +98,7 @@ export default function DepartmentTable() {
               onChange={handleChange}
               className="react-select-container"
               classNamePrefix="react-select"
-              placeholder="Select Departments..."
+              placeholder="Select ..."
             />
 
             <div className="flex justify-between gap-4 mt-2">
