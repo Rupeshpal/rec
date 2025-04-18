@@ -1,86 +1,111 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+const menus = [
+  {
+    name: "Billing",
+    children: [
+      { name: "OPD Ticket", path: "/opd-ticket" },
+      { name: "EMR & IPD", path: "/emr" },
+      { name: "Discharge Summary", path: "/Discharge" },
+      { name: "Discount Scheme", path: "/Discount" },
+      {
+        name: "My Statement",
+        children: [
+          { name: "Tabular", path: "/tabular" },
+          { name: "Cumulative Data", path: "/cumulative-data" },
+        ],
+      },
+      { name: "Billing Profile", path: "/Billing" },
+      { name: "Services Billing", path: "/Services" },
+      { name: "Refund", path: "/Refund" },
+    ],
+  },
+  {
+    name: "Department",
+    children: [
+      { name: "Pathalogy Patient", path: "/Pathalogy_Patient" },
+      { name: "Caltural Report", path: "/Caltural_Report" },
+      {
+        name: "Pathology",
+        children: [
+          { name: "Add Tests Result", path: "/Patholgy_b" },
+          { name: "Reports", path: "/pathology/reports" },
+          { name: "Lab Setup", path: "/pathology/setup" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "OPD",
+    children: [{ name: "Opd Patients List", path: "/Opd" }],
+  },
+  { name: "IPD", path: "/ipd" },
+  {
+    name: "Pharmacy",
+    children: [
+      { name: "Sales", path: "/Sales" },
+      { name: "Sales Return", path: "/Sales" },
+      { name: "Purches", path: "/Phamacy" },
+      { name: "Purches Report", path: "/Phamacy_report" },
+    ],
+  },
+  { name: "Insurance", path: "/insurance" },
+  { name: "SSF", path: "/ssf" },
+  {
+    name: "Payroll",
+    children: [
+      { name: "Staff Ragistration", path: "/Staff_Registration" },
+      { name: "Appointment", path: "/Apointment" },
+      { name: "Designation", path: "/designation" }, // Modified to /designation
+      { name: "Salary Sheet", path: "/Salary_Sheet" },
+    ],
+  },
+  {
+    name: "Setup",
+    children: [
+      { name: "Charge", path: "/Service-Charge" },
+      { name: "Discount Scheme", path: "/Discount_Scheme" },
+      { name: "Department Setting", path: "/Department_s" },
+      { name: "Hospital Department", path: "/Add-Department" },
+      { name: "Doctor Setup", path: "/Doctor" },
+    ],
+  },
+  { name: "Reports", path: "/reports" },
+];
+
 const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openNestedDropdown, setOpenNestedDropdown] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [openPages, setOpenPages] = useState([]); // { title, path }
+  const location = useLocation();
   const closeTimeout = useRef(null);
   const nestedRef = useRef(null);
 
-  const location = useLocation();
   const disableDropdown = location.pathname === "*" || location.pathname === "/notfound";
 
-  const menus = [
-    {
-      name: "Billing",
-      children: [
-        { name: "OPD Ticket", path: "/opd-ticket" },
-        { name: "EMR & IPD", path: "/emr" },
-        {name : "Discharge_Summary", path:"/Discharge"},
-        {name : "Discount Scheme", path:"/Discount"},
-        {
-          name: "My Statement",
-          children: [
-            { name: "Tabular", path: "/tabular" },
-            { name: "Cumulative Data", path: "/cumulative-data" },
-          ],
-        },
-        { name: "Billing Profile", path: "/Billing" },
-        { name: "Services Billing", path: "/Services" },
-        { name: "Refund", path: "/Refund" },
-      ],
-    },
-    {
-      name: "Department",
-      children: [
-        { name: "Pathalogy Patient", path: "/Pathalogy_Patient" },
-        { name: "Caltural Report", path: "/Caltural_Report" },
-        {
-          name: "Pathology",
-          children: [
-            { name: "Add Tests Result", path: "/Patholgy_b" },
-            { name: "Reports", path: "/pathology/reports" },
-            { name: "Lab Setup", path: "/pathology/setup" },
-          ],
-        },
-      ],
-    },
-    { name: "OPD", path: "/Opd" },
-    { name: "IPD", path: "/ipd" },
-    { name: "Pharmacy",
-      children: [
-        { name: "Sales", path: "/Sales" },
-        { name: "Sales Return", path: "/Sales"},
-        { name: "Purches", path: "/Phamacy" },
-        { name: "Purches Report", path: "/Phamacy_report" },
-      ], 
-      
-    },
-    { name: "Insurance", path: "/insurance" },
-    { name: "SSF", path: "/ssf" },
-    {
-      name: "Payroll",
-      children: [
-        { name: "Staff Ragistration", path: "/Staff_Registration" },
-        { name: "Appointment", path: "/Apointment" },
-        { name: "Designation", path: "/" },
-        { name: "Salary Sheet", path: "/Salary_Sheet" },
-       
-      ],
-    },
-    {
-      name: "Setup",
-      children: [
-        { name: " Charge", path: "/Service-Charge" },
-        { name: " Discount Scheme", path: "/Discount_Scheme" },
-        { name: "Department Setting", path: "/Department_s" },
-        { name: "Hospital Department", path: "/Add-Department" },
-        { name: "Doctor Setup", path: "/Doctor" },
-      ],
-    },
-    { name: "Reports", path: "/reports" },
-  ];
+  const findTitleByPath = (items, path) => {
+    for (const item of items) {
+      if (item.path === path) return item.name;
+      if (item.children) {
+        const result = findTitleByPath(item.children, path);
+        if (result) return result;
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    const title = findTitleByPath(menus, location.pathname);
+    if (title && !openPages.find((p) => p.path === location.pathname) && location.pathname !== "/") { // Filter out the dashboard page
+      setOpenPages((prev) => [...prev, { title, path: location.pathname }]);
+    }
+  }, [location.pathname]);
+
+  const handleClosePage = (path) => {
+    setOpenPages((prev) => prev.filter((p) => p.path !== path));
+  };
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -139,91 +164,121 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-teal-700-var text-white shadow-md z-50">
-      <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
-        <Link to="/dashboard" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
-          <img
-            src="/SwasticHMS.png"
-            alt="SwastikHMS Logo"
-            className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
-          />
-          <span className="hidden sm:inline">SwastikHMS</span>
-        </Link>
+    <>
+      <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
+        <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+            <img
+              src="/SwasticHMS.png"
+              alt="SwastikHMS Logo"
+              className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+            />
+            <span className="hidden sm:inline">SwastikHMS</span>
+          </Link>
 
-        <nav className="flex justify-center items-center gap-6">
-          {menus.map((menu, index) => (
-            <div
-              key={index}
-              className="relative"
-              onMouseEnter={() => handleMouseEnter(menu.name)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {menu.path ? (
-                <Link to={menu.path} className="hover:bg-teal-800 p-2 rounded transition">
-                  {menu.name}
-                </Link>
-              ) : (
-                <button
-                  className="hover:bg-teal-800 p-2 rounded transition"
-                  onClick={() => toggleDropdown(menu.name)}
-                  disabled={disableDropdown}
-                >
-                  {menu.name}
-                </button>
-              )}
+          <nav className="flex justify-center items-center gap-4">
+            {menus.map((menu, index) => (
+              <div
+                key={index}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(menu.name)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {menu.path && menu.path !== "/" ? ( // Exclude the "/" route
+                  <Link to={menu.path} className="hover:bg-teal-800 p-2 rounded transition">
+                    {menu.name}
+                  </Link>
+                ) : (
+                  <button
+                    className="hover:bg-teal-800 p-2 rounded transition"
+                    onClick={() => toggleDropdown(menu.name)}
+                    disabled={disableDropdown}
+                  >
+                    {menu.name}
+                  </button>
+                )}
 
-              {menu.children && openDropdown === menu.name && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-52 bg-teal-500 rounded shadow-md border border-gray-300 z-10">
-                  {menu.children.map((child, i) =>
-                    child.children ? (
-                      <div
-                        key={i}
-                        className="relative"
-                        onMouseEnter={() => handleNestedMouseEnter(child.name)}
-                        onMouseLeave={handleNestedMouseLeave}
-                      >
-                        <button
-                          className="block w-full text-left px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-300"
-                          onClick={() => toggleNestedDropdown(child.name)}
+                {menu.children && openDropdown === menu.name && (
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-52 bg-teal-500 rounded shadow-md border border-gray-300 z-10">
+                    {menu.children.map((child, i) =>
+                      child.children ? (
+                        <div
+                          key={i}
+                          className="relative"
+                          onMouseEnter={() => handleNestedMouseEnter(child.name)}
+                          onMouseLeave={handleNestedMouseLeave}
+                        >
+                          <button
+                            className="block w-full text-left px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-300"
+                            onClick={() => toggleNestedDropdown(child.name)}
+                          >
+                            {child.name}
+                          </button>
+
+                          {openNestedDropdown === child.name && (
+                            <div
+                              ref={nestedRef}
+                              className="absolute top-0 w-56 bg-teal-400 rounded shadow-lg border border-gray-300 z-20 transition-all duration-300"
+                              style={{ left: "100%" }}
+                            >
+                              {child.children.map((nested, j) => (
+                                <Link
+                                  key={j}
+                                  to={nested.path}
+                                  className="block px-3 py-2 text-sm hover:bg-teal-500 transition border-b border-gray-200 last:border-b-0"
+                                >
+                                  {nested.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <Link
+                          key={i}
+                          to={child.path}
+                          className="block px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-200 last:border-b-0"
                         >
                           {child.name}
-                        </button>
+                        </Link>
+                      )
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+        </div>
+      </header>
 
-                        {openNestedDropdown === child.name && (
-                          <div
-                            ref={nestedRef}
-                            className="absolute top-0 w-56 bg-teal-400 rounded shadow-lg border border-gray-300 z-20 transition-all duration-300"
-                            style={{ left: "100%" }}
-                          >
-                            {child.children.map((nested, j) => (
-                              <Link
-                                key={j}
-                                to={nested.path}
-                                className="block px-3 py-2 text-sm hover:bg-teal-500 transition border-b border-gray-200 last:border-b-0"
-                              >
-                                {nested.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        key={i}
-                        to={child.path}
-                        className="block px-3 py-2 text-sm hover:bg-teal-600 transition border-b border-gray-200 last:border-b-0"
-                      >
-                        {child.name}
-                      </Link>
-                    )
-                  )}
-                </div>
-              )}
+      {/* Open Pages Header Chips */}
+      <div className="mt-16 flex flex-wrap gap-2 px-6">
+        {openPages.map(({ title, path }) => {
+          if (path === "/") return null; // Exclude the "/" path
+          const isActive = location.pathname === path; // Check if the page is active
+
+          return (
+            <div
+              key={path}
+              className={`mr-2 ${isActive ? "bg-teal-700 font-semibold" : "flex items-center text-sm bg-teal-200 text-teal-900 px-1 py-0 rounded-sm shadow"}`}
+            >
+              <Link
+                to={path}
+                className={`mr-2 ${isActive ? "text-white text-sm font-semibold" : "text-teal-900"}`}
+              >
+                {title}
+              </Link>
+              <button
+                onClick={() => handleClosePage(path)}
+                className="text-sm hover:text-red-600"
+              >
+                ✕
+              </button>
             </div>
-          ))}
-        </nav>
+          );
+        })}
       </div>
-    </header>
+    </>
   );
 };
 
