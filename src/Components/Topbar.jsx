@@ -46,11 +46,11 @@ const Navbar = () => {
         },
       ],
     },
-    { name: "OPD", path: "/" },
+    { name: "OPD", path: "/Opd" },
     { name: "IPD", path: "/ipd" },
     { name: "Pharmacy",
       children: [
-        { name: "Sales", path: "/opd" },
+        { name: "Sales", path: "/Sales" },
         { name: "Sales Return", path: "/Sales"},
         { name: "Purches", path: "/Phamacy" },
         { name: "Purches Report", path: "/Phamacy_report" },
@@ -59,6 +59,16 @@ const Navbar = () => {
     },
     { name: "Insurance", path: "/insurance" },
     { name: "SSF", path: "/ssf" },
+    {
+      name: "Payroll",
+      children: [
+        { name: "Staff Ragistration", path: "/Staff_Registration" },
+        { name: "Appointment", path: "/Apointment" },
+        { name: "Designation", path: "/" },
+        { name: "Salary Sheet", path: "/Salary_Sheet" },
+       
+      ],
+    },
     {
       name: "Setup",
       children: [
