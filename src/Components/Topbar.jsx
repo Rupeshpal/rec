@@ -106,7 +106,10 @@ const Navbar = () => {
   const handleClosePage = (path) => {
     setOpenPages((prev) => prev.filter((p) => p.path !== path));
   };
+const  handleLogoClick = () =>{
 
+  setOpenPages([]);
+}
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
@@ -167,11 +170,14 @@ const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
         <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline"
+            onClick={handleLogoClick}
+          >
             <img
               src="/SwasticHMS.png"
               alt="SwastikHMS Logo"
               className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+              
             />
             <span className="hidden sm:inline">SwastikHMS</span>
           </Link>
@@ -253,7 +259,7 @@ const Navbar = () => {
 
       {/* Open Pages Header Chips */}
       <div className="mt-16 mb-1 flex flex-wrap gap-2 px-6 py-0">
-      <button className="px-2 h-5 text-sm bg-green-500 text-white rounded">
+      <button className="px-1 h-5 text-sm bg-green-500 text-white rounded">
                     Load
                   </button>
         {openPages.map(({ title, path }) => {
@@ -265,7 +271,7 @@ const Navbar = () => {
             key={path}
             className={`mr-2 px-2 h-5  flex gap-2  rounded-sm shadow transition-all duration-200 ${
               isActive
-                ? "bg-teal-700 text-white flex items-center mr-2 px-1   border border-teal-900 shadow-md scale-105"
+                ? "bg-teal-700 text-white flex items-center mr-2 px-1 text-sm   rounded-sm  transition-all duration-200 shadow-md scale-105"
                 : "flex items-center   text-sm bg-teal-200 text-teal-900"
             }`}
           >

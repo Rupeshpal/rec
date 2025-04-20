@@ -25,7 +25,7 @@ const App = () => {
     return (
         <>
             <Topbar />
-      <div className="p-4">
+      <div className="p-2">
         <AppRoutes />
         
       </div>

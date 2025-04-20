@@ -14,6 +14,7 @@ const Tabular = lazy(() => import("../pages/Billing/Tabular"));
 const CumulativeData = lazy(() => import("../pages/Billing/CumulativeData"));
 const Services = lazy(() => import("../pages/Billing/Services-Billing"));
 const Refund = lazy(() => import("../Pages/Billing/Refound"));
+const Test_Opde = lazy(() => import("../Pages/Billing/Test_Opde"));
 const Sales = lazy(() => import("../Pages/Pharmacy/Sales"));
 const Test = lazy(() => import("../Components/Add_Services"));
 const Discount_Scheme  = lazy(() => import("../Components/Discount_Scheme"));
@@ -48,6 +49,7 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<div></div>}>
       <Routes>
+      <Route path="/Test_Opde" element={<Test_Opde />} />
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pathology" element={<Pathology />} />
