@@ -41,7 +41,7 @@ const LoginForm = () => {
                                 Need help?
                             </a>
                         </div>
-                        <h2 className="text-2xl text-center font-semibold mb-6">Log in</h2>
+                        <h2 className="text-2xl text-center text-teal-800 font-semibold mb-6">Log in</h2>
 
                         <form className="space-y-4">
                             <div>
@@ -80,7 +80,7 @@ const LoginForm = () => {
             {showPopup && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
-                        <h3 className="text-lg font-semibold mb-4">Forgot Password</h3>
+                        <h3 className="text-lg text-gray-700 text-center  font-semibold mb-4">Forgot Password</h3>
                         <p className="mb-4 text-sm text-gray-600 text-justify">
                             Please contact your Hospital Administrator or an Authorized Personnel for login assistance.
                             <br />
