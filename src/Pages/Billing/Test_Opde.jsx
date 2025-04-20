@@ -8,29 +8,30 @@ const GeneralInformationForm = () => {
         <div className='grid grid-cols-3 gap-2'>
           <div className="col-span-1">
             <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
-              <option>Marketing</option>
-              <option>Sales</option>
-              <option>IT</option>
+              <option disabled>Payer</option>
+              <option>Private</option>
+              <option>Insurance</option>
+              <option>SSF</option>
             </select>
           </div>
           <div className="col-span-1">
             <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
-              <option>Marketing</option>
-              <option>Sales</option>
-              <option>IT</option>
+              <option >Cash</option>
+              <option >Insurance</option>
+              <option >SSF</option>
             </select>
           </div>
           <div className="col-span-1">
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Search by UHID"
               className="w-full mt-1 border-b border-gray-300 focus:outline-none"
             />
           </div>
         </div>
         <h2 className="text-md font-bold mt-5">GENERAL INFORMATION</h2>
         <div className="grid grid-cols-3 gap-4">
-          {/* Title Dropdown */}
+
           <div className="col-span-1">
 
             <input
@@ -39,10 +40,7 @@ const GeneralInformationForm = () => {
               className="w-full mt-1 border-b border-gray-300 focus:outline-none"
             />
           </div>
-
-          {/* First Name */}
           <div className="col-span-1">
-
             <input
               type="text"
               placeholder="Middle Name"
@@ -57,16 +55,12 @@ const GeneralInformationForm = () => {
             />
           </div>
           <div className="col-span-1">
-           
             <input
               type="date"
               className="w-full mt-1 border-b border-gray-300 focus:outline-none"
             />
           </div>
-
-          {/* Business Area */}
           <div className="col-span-1">
-           
             <input
               type="number"
               placeholder="Age*"
@@ -75,13 +69,12 @@ const GeneralInformationForm = () => {
             />
           </div>
           <div className="col-span-1">
-           
-           <input
-             type="number"
-             placeholder="Mobile No*"
-             className="w-full mt-1 border-b border-gray-300 focus:outline-none"
-           />
-         </div>
+            <input
+              type="number"
+              placeholder="Mobile No*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
           <div className="col-span-1">
             <select className="w-full mt-1  border-b border-gray-300 focus:outline-none">
               <option disabled>District</option>
@@ -90,18 +83,16 @@ const GeneralInformationForm = () => {
             </select>
           </div>
           <div className="col-span-1">
-           
-           <input
-             type="text"
-            readOnly placeholder="Municipality*"
-             className="w-full mt-1 border-b border-gray-300 focus:outline-none"
-           />
-         </div>
-         <div className="col-span-1">
-           
             <input
               type="text"
-             readOnly placeholder="Village/Tole*"
+              readOnly placeholder="Municipality*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              readOnly placeholder="Village/Tole*"
               className="w-full mt-1 border-b border-gray-300 focus:outline-none"
             />
           </div>
@@ -148,21 +139,19 @@ const GeneralInformationForm = () => {
             </select>
           </div>
           <div className="col-span-1">
-           
-           <input
-             type="text"
-            readOnly placeholder="PAN/NID*"
-             className="w-full mt-1 border-b border-gray-300 focus:outline-none"
-           />
-         </div>
-         <div className="col-span-1">
-           
-           <input
-             type="text"
-            readOnly placeholder="Emal"
-             className="w-full mt-1 border-b border-gray-300 focus:outline-none"
-           />
-         </div>
+            <input
+              type="text"
+              placeholder="PAN/NID*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Email"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
           <div className="col-span-1">
             <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
               <option disabled>P. Type/Co-Pay Type</option>
@@ -173,9 +162,8 @@ const GeneralInformationForm = () => {
         </div>
 
       </div>
-      <div className="w-[30%] bg-gray-50 p-6 shadow rounded">
-
-        <h2 className="text-lg font-bold mb-4">Right Section</h2>
+      <div className="w-[30%] bg-gray-50 p-2 shadow rounded">
+        <h2 className="text-lg font-bold mb-4 text-center">Payment Method</h2>
         <p className="text-sm text-gray-600">Additional content can go here.</p>
       </div>
     </div>
