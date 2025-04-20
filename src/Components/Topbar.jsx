@@ -252,19 +252,26 @@ const Navbar = () => {
       </header>
 
       {/* Open Pages Header Chips */}
-      <div className="mt-16 flex flex-wrap gap-2 px-6">
+      <div className="mt-16 mb-1 flex flex-wrap gap-2 px-6 py-0">
+      <button className="px-2 h-5 text-sm bg-green-500 text-white rounded">
+                    Load
+                  </button>
         {openPages.map(({ title, path }) => {
           if (path === "/") return null; // Exclude the "/" path
           const isActive = location.pathname === path; // Check if the page is active
 
           return (
             <div
-              key={path}
-              className={`mr-2 ${isActive ? "bg-teal-700 font-semibold" : "flex items-center text-sm bg-teal-200 text-teal-900 px-1 py-0 rounded-sm shadow"}`}
-            >
+            key={path}
+            className={`mr-2 px-2 h-5  flex gap-2  rounded-sm shadow transition-all duration-200 ${
+              isActive
+                ? "bg-teal-700 text-white flex items-center mr-2 px-1   border border-teal-900 shadow-md scale-105"
+                : "flex items-center   text-sm bg-teal-200 text-teal-900"
+            }`}
+          >
               <Link
                 to={path}
-                className={`mr-2 ${isActive ? "text-white text-sm font-semibold" : "text-teal-900"}`}
+                
               >
                 {title}
               </Link>
@@ -277,7 +284,10 @@ const Navbar = () => {
             </div>
           );
         })}
+            
       </div>
+  
+      <hr />
     </>
   );
 };
