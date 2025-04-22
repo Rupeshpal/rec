@@ -4,6 +4,7 @@ import Topbar from "./Components/Topbar";
 import Footer from "./Components/Footer";
 import AppRoutes from "./Routes/AppRoutes";
 import Billing_Route from "./Routes/Billing_Route";
+import SetupRoute from "./Routes/SetupRoute";
 
 const NotFound = lazy(() => import("./Components/NotFound")); // Fixed path and moved outside component
 
@@ -32,7 +33,8 @@ const AppContent = () => {
             <div className="p-2">
                 <Routes>
                     <Route path="/*" element={<AppRoutes />} />
-                    <Route path="/billing/*" element={<Billing_Route />} />
+                    <Route path="/*" element={<Billing_Route />} />
+                    <Route path="/*" element={<SetupRoute />} />
                     <Route path="*" element={<Suspense fallback={<div>Loading...</div>}><NotFound /></Suspense>} />
                 </Routes>
             </div>
