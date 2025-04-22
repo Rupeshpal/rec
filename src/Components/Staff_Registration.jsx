@@ -33,6 +33,7 @@ export default function StaffRegistration() {
                   <div className="flex gap-2">
                     <input type="date" className="border p-2 rounded w-1/2" />
                     <input type="text" placeholder="04/01/2082" className="border p-2 rounded w-1/2" />
+                     
                   </div>
                 ) : (
                   <input type="text" className="border p-2 rounded" />
