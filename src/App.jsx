@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Topbar from "./Components/Topbar";
 import Footer from "./Components/Footer";
 import AppRoutes from "./Routes/AppRoutes";
-import Billing_Route from "./Routes/Billing_Route";
+// import AppBillingRoutes from "./Routes/AppBillingRoutes";
 import SetupRoute from "./Routes/SetupRoute";
 
-const NotFound = lazy(() => import("./Components/NotFound")); // Fixed path and moved outside component
+ // Fixed path and moved outside component
 
 const AppContent = () => {
     const [loading, setLoading] = useState(true);
@@ -31,14 +31,15 @@ const AppContent = () => {
         <>
             <Topbar />
             <div className="p-2">
-                <Routes>
-                    <Route path="/*" element={<AppRoutes />} />
-                    <Route path="/*" element={<Billing_Route />} />
-                    <Route path="/*" element={<SetupRoute />} />
-                    <Route path="*" element={<Suspense fallback={<div>Loading...</div>}><NotFound /></Suspense>} />
-                </Routes>
+                 
+                 <AppRoutes />
+                  {/* <AppBillingRoutes/>  */}
+                  <SetupRoute />        
+
+                
             </div>
             <Footer />
+
         </>
     );
 };

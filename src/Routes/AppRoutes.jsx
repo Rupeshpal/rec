@@ -1,29 +1,19 @@
-// src/routes/AppRoutes.jsx
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Lazy-loaded Pages
+const NotFound = lazy(() => import("../Components/NotFound"));
 const Dashboard = lazy(() => import("../Components/Dashboard"));
 const Pathology = lazy(() => import("../Components/Pathology"));
-const OPDTicket = lazy(() => import("../Components/OPDTicket"));
 const EMR = lazy(() => import("../Components/Emergency"));
 const Ipd = lazy(() => import("../Components/IPDRegistration"));
-const CulturalTest = lazy(() => import("../Pages/Billing/CulturalTest"));
-const ReportSearch = lazy(() => import("../Pages/Billing/ReportSearch"));
-const Billing = lazy(() => import("../Pages/Billing/Billing-Profile"));
-const Tabular = lazy(() => import("../Pages/Billing/Tabular"));
-const CumulativeData = lazy(() => import("../Pages/Billing/CumulativeData"));
-const Services = lazy(() => import("../Pages/Billing/Services-Billing"));
-const Refund = lazy(() => import("../Pages/Billing/Refound"));
-const Test_Opde = lazy(() => import("../Pages/Billing/Test_Opde"));
 const Sales = lazy(() => import("../Pages/Pharmacy/Sales"));
 const Test = lazy(() => import("../Components/Add_Services"));
-const Discount_Scheme  = lazy(() => import("../Components/Discount_Scheme"));
-const Opd  = lazy(() => import("../Components/Opd"));
-const Department  = lazy(() => import("../Components/Department"));
-const Doctor  = lazy(() => import("../Components/Doctor"));
-const Login  = lazy(() => import("../Components/Login"));
-
+const Discount_Scheme = lazy(() => import("../Components/Discount_Scheme"));
+const Opd = lazy(() => import("../Components/Opd"));
+const Department = lazy(() => import("../Components/Department"));
+const Doctor = lazy(() => import("../Components/Doctor"));
+const Login = lazy(() => import("../Components/Login"));
 const Patholgy_b = lazy(() => import("../Pages/Department/Pathology_Bill"));
 const Caltural_Report = lazy(() => import("../Pages/Department/Caltural_Report"));
 const OpdReport = lazy(() => import("../Pages/Upcomming_module/Opd_report_blance"));
@@ -44,32 +34,32 @@ const Pathalogy_Patient = lazy(() => import("../Pages/Department/Pathalogy_Patie
 const General_M = lazy(() => import("../Pages/Pharmacy/General_medicine_report"));
 const Sales_return = lazy(() => import("../Pages/Pharmacy/Sales_return"));
 
+// Nested Billing Routes
+import AppBillingRoutes from "./AppBillingRoutes";
+import SetupRoute from "./SetupRoute";
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
       <Routes>
-   
+        {/* Default and Dashboard */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Primary Modules */}
         <Route path="/pathology" element={<Pathology />} />
-       
-        <Route path="/opd-ticket" element={<OPDTicket />} />
         <Route path="/Sales_return" element={<Sales_return />} />
         <Route path="/emr" element={<EMR />} />
         <Route path="/Ipd" element={<Ipd />} />
-      
         <Route path="/Phamacy" element={<Phamacy />} />
         <Route path="/General_M" element={<General_M />} />
         <Route path="/Doctor" element={<Doctor />} />
         <Route path="/Apointment" element={<Apointment />} />
         <Route path="/Add-Department" element={<Department />} />
-       
         <Route path="/Test" element={<Test />} />
         <Route path="/Opd" element={<Opd />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Discount_Scheme" element={<Discount_Scheme />} />
-      
         <Route path="/Setup_Pathloggy" element={<Pathloggy_S />} />
         <Route path="/Caltural_Report" element={<Caltural_Report />} />
         <Route path="/Patholgy_b" element={<Patholgy_b />} />
@@ -83,11 +73,16 @@ const AppRoutes = () => {
         <Route path="/Internal" element={<Internal />} />
         <Route path="/Salary_Sheet" element={<Salary_Sheet />} />
         <Route path="/Staff_Registration" element={<Staff_Registration />} />
-       
         <Route path="/Insurance" element={<Insurance />} />
         <Route path="/Insurance_m" element={<Medicine />} />
         <Route path="/Sales" element={<Sales />} />
+
+        {/* Billing Routes (nested group) */}
+        <Route path="/*" element={<AppBillingRoutes />} />
+        <Route path="/*" element={<SetupRoute />} />
+
   
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
