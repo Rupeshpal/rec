@@ -2,17 +2,18 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Lazy-loaded pages
+// Lazy-loaded Pages
 const Dashboard = lazy(() => import("../Components/Dashboard"));
 const Pathology = lazy(() => import("../Components/Pathology"));
-const CulturalTest = lazy(() => import("../pages/Billing/CulturalTest"));
-const ReportSearch = lazy(() => import("../pages/Billing/ReportSearch"));
 const OPDTicket = lazy(() => import("../Components/OPDTicket"));
-const EMR = lazy(() => import("../pages/Billing/EMR"));
-const Billing = lazy(() => import("../pages/Billing/Billing-Profile"));
-const Tabular = lazy(() => import("../pages/Billing/Tabular"));
-const CumulativeData = lazy(() => import("../pages/Billing/CumulativeData"));
-const Services = lazy(() => import("../pages/Billing/Services-Billing"));
+const EMR = lazy(() => import("../Components/Emergency"));
+const Ipd = lazy(() => import("../Components/IPDRegistration"));
+const CulturalTest = lazy(() => import("../Pages/Billing/CulturalTest"));
+const ReportSearch = lazy(() => import("../Pages/Billing/ReportSearch"));
+const Billing = lazy(() => import("../Pages/Billing/Billing-Profile"));
+const Tabular = lazy(() => import("../Pages/Billing/Tabular"));
+const CumulativeData = lazy(() => import("../Pages/Billing/CumulativeData"));
+const Services = lazy(() => import("../Pages/Billing/Services-Billing"));
 const Refund = lazy(() => import("../Pages/Billing/Refound"));
 const Test_Opde = lazy(() => import("../Pages/Billing/Test_Opde"));
 const Sales = lazy(() => import("../Pages/Pharmacy/Sales"));
@@ -43,31 +44,32 @@ const Phamacy_report = lazy(() => import("../Pages/Pharmacy/Pharamacy_Report"));
 const Pathalogy_Patient = lazy(() => import("../Pages/Department/Pathalogy_Patient"));
 const General_M = lazy(() => import("../Pages/Pharmacy/General_medicine_report"));
 const Sales_return = lazy(() => import("../Pages/Pharmacy/Sales_return"));
-const NotFound = lazy(() => import("../Components/NotFound"));
+
 
 const AppRoutes = () => {
   return (
     <Suspense fallback={<div></div>}>
       <Routes>
-      <Route path="/Test_Opde" element={<Test_Opde />} />
+      {/* <Route path="/Test_Opde" element={<Test_Opde />} /> */}
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pathology" element={<Pathology />} />
-        <Route path="/cultural" element={<CulturalTest />} />
-        <Route path="/report-search" element={<ReportSearch />} />
+        {/* <Route path="/cultural" element={<CulturalTest />} /> */}
+        {/* <Route path="/report-search" element={<ReportSearch />} /> */}
         <Route path="/opd-ticket" element={<OPDTicket />} />
         <Route path="/Sales_return" element={<Sales_return />} />
         <Route path="/emr" element={<EMR />} />
-        <Route path="/tabular" element={<Tabular />} />
+        <Route path="/Ipd" element={<Ipd />} />
+        {/* <Route path="/tabular" element={<Tabular />} /> */}
         <Route path="/Phamacy" element={<Phamacy />} />
         <Route path="/General_M" element={<General_M />} />
         <Route path="/Doctor" element={<Doctor />} />
         <Route path="/Apointment" element={<Apointment />} />
         <Route path="/Add-Department" element={<Department />} />
-        <Route path="/cumulative-data" element={<CumulativeData />} />
-        <Route path="/Billing" element={<Billing />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/Refund" element={<Refund />} />
+        {/* <Route path="/cumulative-data" element={<CumulativeData />} /> */}
+        {/* <Route path="/Billing" element={<Billing />} />
+        <Route path="/services" element={<Services />} /> */}
+        {/* <Route path="/Refund" element={<Refund />} /> */}
         <Route path="/Test" element={<Test />} />
         <Route path="/Opd" element={<Opd />} />
         <Route path="/Login" element={<Login />} />
@@ -90,7 +92,7 @@ const AppRoutes = () => {
         <Route path="/Insurance" element={<Insurance />} />
         <Route path="/Insurance_m" element={<Medicine />} />
         <Route path="/Sales" element={<Sales />} />
-        <Route path="*" element={<NotFound />} />
+    
       </Routes>
     </Suspense>
   );

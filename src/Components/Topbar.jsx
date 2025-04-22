@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const menus = [
   {
@@ -103,11 +103,11 @@ const Navbar = () => {
     }
   }, [location.pathname]);
 
+
   const handleClosePage = (path) => {
     setOpenPages((prev) => prev.filter((p) => p.path !== path));
   };
 const  handleLogoClick = () =>{
-
   setOpenPages([]);
 }
   useEffect(() => {
@@ -262,35 +262,22 @@ const  handleLogoClick = () =>{
       <button className="px-1 h-5 text-sm bg-green-500 text-white rounded">
                     Load
                   </button>
-        {openPages.map(({ title, path }) => {
-          if (path === "/") return null; // Exclude the "/" path
-          const isActive = location.pathname === path; // Check if the page is active
-
+                  {openPages.map(({ title, path }) => {
+          const active = location.pathname === path;
           return (
             <div
-            key={path}
-            className={`mr-2 px-2 h-5  flex gap-2  rounded-sm shadow transition-all duration-200 ${
-              isActive
-                ? "bg-teal-700 text-white flex items-center mr-2 px-1 text-sm   rounded-sm  transition-all duration-200 shadow-md scale-105"
-                : "flex items-center   text-sm bg-teal-200 text-teal-900"
-            }`}
-          >
-              <Link
-                to={path}
-                
-              >
-                {title}
-              </Link>
-              <button
-                onClick={() => handleClosePage(path)}
-                className="text-sm hover:text-red-600"
-              >
+              key={path}
+              className={`flex items-center gap-1 px-2 py-1 rounded shadow-sm text-sm cursor-pointer transition ${
+                active ? "bg-teal-700 text-white" : "bg-teal-200 text-teal-900"
+              }`}
+            >
+              <Link to={path}>{title}</Link>
+              <button onClick={() => handleClosePage(path)} className="hover:text-red-600">
                 ✕
               </button>
             </div>
           );
         })}
-            
       </div>
   
       <hr />
