@@ -45,7 +45,7 @@ const menus = [
     name: "Pharmacy",
     children: [
       { name: "Sales", path: "/Sales" },
-      { name: "Sales Return", path: "/Sales" },
+      { name: "Sales Return", path: "/Sales_return" },
       { name: "Purches", path: "/Phamacy" },
       { name: "Purches Report", path: "/Phamacy_report" },
     ],

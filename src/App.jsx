@@ -33,8 +33,7 @@ const AppContent = () => {
             <div className="p-2">
                  
                  <AppRoutes />
-                  {/* <AppBillingRoutes/>  */}
-                  <SetupRoute />        
+                      
 
                 
             </div>

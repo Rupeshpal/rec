@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Services_Billin from "../../Components/Services_Billin";
-import Advance from "../../Components/Advance";
-import Bed_transfer from "../../Components/Bed_transfer";
+import Services_Billin from "./Services_Billin";
+import Advance from "./Advance";
+import Bed_transfer from "./Bed_transfer";
 
 const EMRPage = () => {
   const [activeTab, setActiveTab] = useState("services");
