@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import GlobalButton from '../../components/GlobalButton';
+import GlobalButton from '../../Components/GlobalButton';
 
 export default function DailyTransactionReport() {
   const printRef = useRef();
