@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { jsPDF } from 'jspdf';
 import { Link } from 'react-router-dom';
-import GlobalButton from '../components/GlobalButton';
+import GlobalButton from '../Components/GlobalButton';
 import { Trash2 } from 'lucide-react';
 
 function App() {
