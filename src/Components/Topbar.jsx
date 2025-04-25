@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const menus = [
   {
@@ -45,7 +45,7 @@ const menus = [
     name: "Pharmacy",
     children: [
       { name: "Sales", path: "/Sales" },
-      { name: "Sales Return", path: "/Sales" },
+      { name: "Sales Return", path: "/Sales_return" },
       { name: "Purches", path: "/Phamacy" },
       { name: "Purches Report", path: "/Phamacy_report" },
     ],
@@ -64,7 +64,7 @@ const menus = [
   {
     name: "Setup",
     children: [
-      { name: "Charge", path: "/Service-Charge" },
+      { name: "Charge", path: "/Charge" },
       { name: "Discount Scheme", path: "/Discount_Scheme" },
       { name: "Department Setting", path: "/Department_s" },
       { name: "Hospital Department", path: "/Add-Department" },
@@ -103,10 +103,13 @@ const Navbar = () => {
     }
   }, [location.pathname]);
 
+
   const handleClosePage = (path) => {
     setOpenPages((prev) => prev.filter((p) => p.path !== path));
   };
-
+const  handleLogoClick = () =>{
+  setOpenPages([]);
+}
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
@@ -167,11 +170,14 @@ const Navbar = () => {
     <>
       <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
         <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline">
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline"
+            onClick={handleLogoClick}
+          >
             <img
               src="/SwasticHMS.png"
               alt="SwastikHMS Logo"
               className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
+              
             />
             <span className="hidden sm:inline">SwastikHMS</span>
           </Link>
@@ -252,32 +258,29 @@ const Navbar = () => {
       </header>
 
       {/* Open Pages Header Chips */}
-      <div className="mt-16 flex flex-wrap gap-2 px-6">
-        {openPages.map(({ title, path }) => {
-          if (path === "/") return null; // Exclude the "/" path
-          const isActive = location.pathname === path; // Check if the page is active
-
+      <div className="mt-16 mb-1 flex flex-wrap gap-2 px-6 py-0">
+      <button className="px-1 h-5 text-sm bg-green-500 text-white rounded">
+                    Load
+                  </button>
+                  {openPages.map(({ title, path }) => {
+          const active = location.pathname === path;
           return (
             <div
               key={path}
-              className={`mr-2 ${isActive ? "bg-teal-700 font-semibold" : "flex items-center text-sm bg-teal-200 text-teal-900 px-1 py-0 rounded-sm shadow"}`}
+              className={`flex items-center gap-1 px-2 py-1 rounded shadow-sm text-sm cursor-pointer transition ${
+                active ? "bg-teal-700 text-white" : "bg-teal-200 text-teal-900"
+              }`}
             >
-              <Link
-                to={path}
-                className={`mr-2 ${isActive ? "text-white text-sm font-semibold" : "text-teal-900"}`}
-              >
-                {title}
-              </Link>
-              <button
-                onClick={() => handleClosePage(path)}
-                className="text-sm hover:text-red-600"
-              >
+              <Link to={path}>{title}</Link>
+              <button onClick={() => handleClosePage(path)} className="hover:text-red-600">
                 ✕
               </button>
             </div>
           );
         })}
       </div>
+  
+      <hr />
     </>
   );
 };

@@ -1,241 +1,251 @@
-import React, { useState } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { jsPDF } from 'jspdf';
 
-function App() {
-  const [formData, setFormData] = useState({
-    patientName: '',
-    surname: '',
-    dob: '',
-    phoneNumber: '',
-    admissionType: 'ADMIT PATIENT',
-    admissionCategory: 'GENERAL ADMISSION',
-    paymentMode: 'ConnectIPS',
-    amount: 500.00,
-    advance: 500,
-    payableAmount: 500,
-  });
+import React from 'react';
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
-  const handleSubmit = () => {
-    // Add logic to save and print
-    alert('Form submitted!');
-  };
-
-  // Create PDF function using jsPDF
-  const handlePrintPDF = () => {
-    const doc = new jsPDF();
-    doc.text('IPD Registration', 10, 10);
-    doc.text(`Name: ${formData.patientName}`, 10, 20);
-    doc.text(`Surname: ${formData.surname}`, 10, 30);
-    doc.text(`DOB: ${formData.dob}`, 10, 40);
-    doc.text(`Phone: ${formData.phoneNumber}`, 10, 50);
-    doc.text('Payment Record', 10, 60);
-    doc.text(`Admission Type: ${formData.admissionType}`, 10, 70);
-    doc.text(`Admission Category: ${formData.admissionCategory}`, 10, 80);
-    doc.text(`Payment Mode: ${formData.paymentMode}`, 10, 90);
-    doc.text(`Amount: ${formData.amount}`, 10, 100);
-    doc.text(`Advance: ${formData.advance}`, 10, 110);
-    doc.text(`Payable Amount: ${formData.payableAmount}`, 10, 120);
-    doc.save('registration_form.pdf');
-  };
-
-  // Setup React-to-Print for printing the component
-  const printRef = React.useRef();
-
-  const handlePrint = useReactToPrint({
-    content: () => printRef.current,
-    onAfterPrint: handlePrintPDF,  // After printing, generate the PDF
-  });
-
-  const confirmAndPrint = () => {
-    // Show a confirmation dialog
-    const isConfirmed = window.confirm('Do you want to print and save as PDF?');
-
-    if (isConfirmed) {
-    
-    
-      handlePrint();
-    }
-  };
-
+const GeneralInformationForm = () => {
   return (
-    <div className="bg-gray-100 p-6">
-      <div className="flex justify-between items-start gap-10">
-        {/* IPD Registration Form */}
-        <div className="w-1/2" ref={printRef}>
-          <h2 className="text-xl font-semibold bg-blue-500 text-white p-3 text-center">
-            IPD REGISTRATION
-          </h2>
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-          >
-            Refresh Page
-          </button>
-          <div className="p-4 space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Name</label>
-                <input
-                  type="text"
-                  name="patientName"
-                  value={formData.patientName}
-                  onChange={handleInputChange}
-                  placeholder="Enter Name"
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Surname</label>
-                <input
-                  type="text"
-                  name="surname"
-                  value={formData.surname}
-                  onChange={handleInputChange}
-                  placeholder="Enter Surname"
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                />
-              </div>
-            </div>
+    <div className=" w-full min-h-4xl p-1 py-1 shadow-lg flex gap-4">
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Date of Birth</label>
-                <input
-                  type="text"
-                  name="dob"
-                  value={formData.dob}
-                  onChange={handleInputChange}
-                  placeholder="YY / MM / DD"
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Phone Number</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                  placeholder="Enter Phone Number"
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                />
-              </div>
-            </div>
+      <div className="w-[65%] bg-white p-2 shadow rounded">
+        <div className='grid grid-cols-3 gap-2'>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Payer</option>
+              <option>Private</option>
+              <option>Insurance</option>
+              <option>SSF</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option >Cash</option>
+              <option >Insurance</option>
+              <option >SSF</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Search by UHID"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+        </div>
+        <h2 className="text-md font-bold mt-5">GENERAL INFORMATION</h2>
+        <div className="grid grid-cols-3 gap-4">
 
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={handleSubmit}
-                className="bg-green-500 text-white px-6 py-2 rounded-md hover:bg-green-600"
-              >
-                Save & Print
-              </button>
-            </div>
+          <div className="col-span-1">
+
+            <input
+              type="text"
+              placeholder="First Name"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Middle Name"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="date"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="number"
+              placeholder="Age*"
+              readOnly
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="number"
+              placeholder="Mobile No*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1  border-b border-gray-300 focus:outline-none">
+              <option disabled>District</option>
+              <option>Parsa</option>
+              <option>Bara</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              readOnly placeholder="Municipality*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              readOnly placeholder="Village/Tole*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Marital Status*</option>
+              <option>Single</option>
+              <option>Married</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Blood Group</option>
+              <option>A+</option>
+              <option>O+</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Religion</option>
+              <option>Hindu</option>
+              <option>Muslim</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>Occupation</option>
+              <option>Farmer</option>
+              <option>Businesman</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option>Consultant</option>
+              <option>Dr. Madhurendra</option>
+              <option>Dr.IT</option>
+            </select>
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="PAN/NID*"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Email"
+              className="w-full mt-1 border-b border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="col-span-1">
+            <select className="w-full mt-1 border-b border-gray-300 focus:outline-none">
+              <option disabled>P. Type/Co-Pay Type</option>
+              <option>Normal</option>
+              <option>Disabled</option>
+            </select>
           </div>
         </div>
 
-        {/* Payment Record */}
-        <div className="w-1/2">
-          <h2 className="text-xl font-semibold bg-gray-700 text-white p-3 text-center">
-            Payment Record
-          </h2>
+      </div>
+      <div className="w-[35%] bg-white p-4 shadow rounded space-y-4">
+  <h2 className="text-lg font-semibold text-gray-700">Payment Method</h2>
+  <div className="space-y-4">
+  <div className="grid grid-cols-3 gap-4">
 
-          <div className="p-4 space-y-4">
-            {/* First row: Admission Type & Category */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Admission Type</label>
-                <select
-                  name="admissionType"
-                  value={formData.admissionType}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                >
-                  <option>ADMIT PATIENT</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Admission Category</label>
-                <select
-                  name="admissionCategory"
-                  value={formData.admissionCategory}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                >
-                  <option>GENERAL ADMISSION</option>
-                </select>
-              </div>
-            </div>
+    <select className="w-full border-b border-gray-300 py-2 focus:outline-none">
+      <option disabled selected>Charge Category</option>
+      <option>Opd</option>
+      <option>Emergency</option>
+    </select>
 
-            {/* Second row: Payment Mode & Amount */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-gray-700 font-medium">Payment Mode</label>
-                <select
-                  name="paymentMode"
-                  value={formData.paymentMode}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                >
-                  <option>ConnectIPS</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-gray-700 font-medium">Amount</label>
-                <input
-                  type="text"
-                  name="amount"
-                  value={formData.amount}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 p-2 rounded-md bg-white"
-                />
-              </div>
-            </div>
+    <select className="w-full border-b border-gray-300 py-2 focus:outline-none">
+      <option disabled selected>Select</option>
+      <option>Opd Ticket</option>
+      <option>FollowUp</option>
+    </select>
 
-            {/* Third row: Advance & Payable Amount */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center space-x-2 w-full">
-                <span className="text-green-600 font-semibold">Advance:</span>
-                <input
-                  type="text"
-                  value={formData.advance}
-                  className="w-3/4 border border-gray-300 p-3 rounded-md text-blue-600 font-bold text-lg text-center"
-                  disabled
-                />
-              </div>
-              <div className="flex items-center space-x-2 w-full">
-                <span className="text-green-600 font-semibold">Payable Amount:</span>
-                <input
-                  type="text"
-                  value={formData.payableAmount}
-                  className="w-3/4 border border-gray-300 p-3 rounded-md text-blue-600 font-bold text-lg text-center"
-                  disabled
-                />
-              </div>
-            </div>
-
-            {/* Save & Print Button */}
-            <div className="flex justify-end mt-4 space-x-4">
-              <button
-                onClick={confirmAndPrint}
-                className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600"
-              >
-                Print & Save as PDF
-              </button>
-            </div>
-          </div>
-        </div>
+    <input
+      type="number"
+      placeholder="Rs 0"
+      className="w-full border-b border-gray-300  focus:outline-none"
+    />
+  </div>
+    <div className="grid grid-cols-2 gap-4">
+      <div className='grid-cols-1'>
+    <select className="w-full border-b border-gray-300  focus:outline-none">
+      <option disabled selected>Discount Scheme</option>
+      <option>5%</option>
+      <option>10%</option>
+    </select>
+      </div>
+      <div className='grid-cols-1'>
+      <input
+      type="number"
+      placeholder="Rs 0"
+      className="w-full border-b border-gray-300  focus:outline-none"
+    />
       </div>
     </div>
+  
+  <div className="grid grid-cols-2 gap-4">
+    <select className="w-full border-b border-gray-300 py-2 focus:outline-none">
+      <option disabled selected>Select Payment</option>
+      <option>Cash</option>
+      <option>Insurance</option>
+    </select>
+    <input
+      type="number"
+      placeholder="Rs 0"
+      className="w-full border-b border-gray-300  focus:outline-none"
+    />
+  </div>
+  
+</div>
+<div className="grid grid-cols-3 gap-2 mt-4">
+  <div className="flex h-[4rem] w-[9rem] items-center justify-center border rounded-lg  hover:shadow-md cursor-pointer">
+    <img
+      src="/esewa.png"
+      alt="eSewa"
+      className="w-30 h-auto"
+    />
+  </div>
+  <div className="flex bg-pink-900 h-[4rem] w-[9rem]  items-center justify-center border rounded-lg  hover:shadow-md cursor-pointer">
+    <img
+      src="/khalti.png"
+      alt="Khalti"
+      className="w-30 h-auto"
+    />
+  </div>
+  <div className="flex h-[4rem] w-[9rem] items-center justify-center border rounded-lg p-4 hover:shadow-md cursor-pointer ">
+    <img
+      src="/Fone-pe.png"
+      alt="IME Pay"
+      className="w-30 h-auto"
+    />
+  </div>
+</div>
+  <button className="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition">
+    Pay $599,00
+  </button>
+</div>
+    </div>
   );
-}
-
-export default App;
+};
+export default GeneralInformationForm;

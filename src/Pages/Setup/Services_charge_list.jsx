@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import Services_charge_list from "../../Components/Services_charge_list"
+import Services_charge_list from "./Services_charge_list"
 import Unit_Type from "../../Components/Unit_Type"
 import Category_Type from "../../Components/Category_Type"
 

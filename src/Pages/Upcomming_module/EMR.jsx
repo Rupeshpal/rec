@@ -8,7 +8,7 @@ const EMRPage = () => {
     return (
         <div className="bg-gray-100 min-h-screen w-full">
             {/* Tabs Navigation */}
-            <div className="px-6 mt-20 w-full border-b pb-3">
+            <div className="px-6  w-full border-b pb-3">
                 <div className="flex space-x-6 text-lg font-semibold border-b-2">
                     <button
                         className={`flex items-center space-x-2 pb-2 transition-all duration-300 ${

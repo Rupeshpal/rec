@@ -1,19 +1,23 @@
 import React, { Suspense, lazy, useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Topbar from "./Components/Topbar";
-import AppRoutes from "./Routes/AppRoutes";
 import Footer from "./Components/Footer";
-const App = () => {
+import AppRoutes from "./Routes/AppRoutes";
+// import AppBillingRoutes from "./Routes/AppBillingRoutes";
+import SetupRoute from "./Routes/SetupRoute";
+
+ // Fixed path and moved outside component
+
+const AppContent = () => {
     const [loading, setLoading] = useState(true);
     const location = useLocation();
 
     useEffect(() => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             setLoading(false);
         }, 1500); // Simulate loading
-    }, []); 
-
-    const isInvalidRoute = location.pathname === '/notfound' || location.pathname === '*';// You can extend this check as needed
+        return () => clearTimeout(timer);
+    }, []);
 
     if (loading) {
         return (
@@ -22,21 +26,26 @@ const App = () => {
             </div>
         );
     }
+
     return (
         <>
             <Topbar />
-      <div className="p-4">
-        <AppRoutes />
-        
-      </div>
-      <Footer />
+            <div className="p-2">
+                 
+                 <AppRoutes />
+                
+
+                
+            </div>
+            <Footer />
+
         </>
     );
 };
 
 const AppWrapper = () => (
     <Router>
-        <App />
+        <AppContent />
     </Router>
 );
 
