@@ -10,13 +10,13 @@ const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"
 
 const SetupRoute = () => {
   return (
-    <Suspense fallback={<div></div>}>
+   
       <Routes>
       <Route path="/Charge" element={<Charge />} />
           <Route path="/Department_s" element={<Department_setting />} />
   
       </Routes>
-    </Suspense>
+    
   );
 };
 

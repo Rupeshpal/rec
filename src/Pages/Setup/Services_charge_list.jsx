@@ -9,7 +9,7 @@ import Charges from "../../Components/Charges"
 import Tax_Category from "../../Components/Tax_Category"
 
 const EMRPage = () => {
-  const [activeTab, setActiveTab] = useState("Services_charge_list");
+  const [activeTab, setActiveTab] = useState("Charges");
 
   const tabs = [
     { key: "Charges", label: "Charges", component:<Charges/> },
