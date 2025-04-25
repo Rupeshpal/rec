@@ -48,15 +48,14 @@ const LoginForm = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:9000/api/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
+        { email, password }
+      );
 
       if (response.data.status === 1) {
-        const token = response.data.data.token;
+        const token = response.data.token;
         localStorage.setItem("authToken", token);
-
         toast.success("Login successful!");
         navigate("/dashboard");
       } else {
@@ -93,10 +92,10 @@ const LoginForm = () => {
                 </span>
               </div>
               <p className="text-sm text-black font-[100] opacity-50">
-                Welcome to SwastikHMS, where compassionate care meets cutting-edge
-                technology! Our hospital management software is designed to
-                streamline operations, enhance patient care, and empower healthcare
-                professionals.
+                Welcome to SwastikHMS, where compassionate care meets
+                cutting-edge technology! Our hospital management software is
+                designed to streamline operations, enhance patient care, and
+                empower healthcare professionals.
               </p>
             </div>
           </div>
@@ -114,7 +113,9 @@ const LoginForm = () => {
 
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="block mb-1 text-sm text-gray-600">Email</label>
+                <label className="block mb-1 text-sm text-gray-600">
+                  Email
+                </label>
                 <input
                   type="email"
                   placeholder="joe@email.com"
@@ -125,7 +126,9 @@ const LoginForm = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1 text-sm text-gray-600">Password</label>
+                <label className="block mb-1 text-sm text-gray-600">
+                  Password
+                </label>
                 <input
                   type="password"
                   placeholder="Enter your Password"
@@ -135,7 +138,11 @@ const LoginForm = () => {
                   required
                 />
                 <div className="text-right text-sm mt-1">
-                  <a href="#" className="text-gray-600 hover:underline" onClick={handlepopup}>
+                  <a
+                    href="#"
+                    className="text-gray-600 hover:underline"
+                    onClick={handlepopup}
+                  >
                     Forgot Password?
                   </a>
                 </div>
@@ -160,12 +167,13 @@ const LoginForm = () => {
           <div className="bg-white p-6 rounded shadow-lg max-w-sm w-full">
             <h3 className="text-lg font-semibold mb-4">Forgot Password</h3>
             <p className="mb-4 text-sm text-gray-600 text-justify">
-              Please contact your Hospital Administrator or an Authorized Personnel for
-              login assistance.
+              Please contact your Hospital Administrator or an Authorized
+              Personnel for login assistance.
               <br />
               <br />
-              For security reasons, only approved users can access SwastikHMS. If you
-              believe this is an error, kindly reach out to your system administrator.
+              For security reasons, only approved users can access SwastikHMS.
+              If you believe this is an error, kindly reach out to your system
+              administrator.
             </p>
             <button
               onClick={closePopup}
