@@ -26,5 +26,5 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/  # Ensure local-dir ends with a trailing slash
-          server-dir: ${{ secrets.FTP_TARGET }}  # Remote directory path
+          local-dir: ./dist/         # <-- ✅ make sure this is where vite outputs the build
+          server-dir: ${{ secrets.FTP_TARGET }}   # e.g., /public_html/subdomain/
