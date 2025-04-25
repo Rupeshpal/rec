@@ -48,7 +48,7 @@ const RefundTable = () => (
   <div className="p-4 mt-10">
      <div className=" w-full">
     {/* Stats Section */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-3   gap-4 mb-6">
+    <div className="grid grid-cols-1  sm:grid-cols-3   gap-4 mb-6">
       <div className="bg-gray-100  hover:bg-gray-200 transaction-all duration-0.5 p-4 shadow rounded flex  items-center justify-between">
         <div >
           <p className="text-gray-500 text-sm">Total Refunds</p>

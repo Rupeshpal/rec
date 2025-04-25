@@ -3,14 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Topbar from "./Components/Topbar";
 import Footer from "./Components/Footer";
 import AppRoutes from "./Routes/AppRoutes";
-// import AppBillingRoutes from "./Routes/AppBillingRoutes";
-import SetupRoute from "./Routes/SetupRoute";
-
- // Fixed path and moved outside component
+import { Toaster } from "react-hot-toast";
+import Login from "./Components/Login"; // Import your Login component
 
 const AppContent = () => {
     const [loading, setLoading] = useState(true);
-    const location = useLocation();
+    const location = useLocation();  // Get the current route location
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -29,16 +27,19 @@ const AppContent = () => {
 
     return (
         <>
-            <Topbar />
-            <div className="p-2">
-                 
-                 <AppRoutes />
-                      
-
-                
-            </div>
-            <Footer />
-
+            <Toaster position="top-right" />
+            {location.pathname === "/Login" ? (
+              
+                <Login />
+            ) : (
+                <>
+                    <Topbar />  
+                    <div className="p-2">
+                        <AppRoutes />
+                    </div>
+                    <Footer /> 
+                </>
+            )}
         </>
     );
 };
