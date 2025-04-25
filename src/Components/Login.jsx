@@ -8,6 +8,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ Added this
 
   const navigate = useNavigate();
 
@@ -22,6 +23,29 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    const existingToken = localStorage.getItem("authToken");
+
+    if (existingToken) {
+      try {
+        const verify = await axios.get("http://127.0.0.1:9000/api/verify-token", {
+          headers: {
+            Authorization: `Bearer ${existingToken}`,
+          },
+        });
+
+        if (verify.data.status === 1) {
+          toast.success("Already logged in!");
+          navigate("/dashboard");
+          return;
+        }
+      } catch (err) {
+        console.warn("Token is invalid or expired, proceeding to login.");
+        localStorage.removeItem("authToken");
+      }
+    }
+
+    setLoading(true);
 
     try {
       const response = await axios.post("http://127.0.0.1:9000/api/login", {
@@ -45,6 +69,8 @@ const LoginForm = () => {
       const errMsg = "Invalid email or password";
       setError(errMsg);
       toast.error(errMsg);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -119,9 +145,10 @@ const LoginForm = () => {
 
               <button
                 type="submit"
-                className="w-full bg-teal-400 text-white font-semibold py-2 rounded hover:bg-teal-500 transition duration-200"
+                disabled={loading}
+                className={`w-full ${loading ? "bg-teal-300" : "bg-teal-400"} text-white font-semibold py-2 rounded hover:bg-teal-500 transition duration-200`}
               >
-                Login
+                {loading ? "Logging in..." : "Login"}
               </button>
             </form>
           </div>

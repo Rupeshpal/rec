@@ -72,6 +72,15 @@ const menus = [
     ],
   },
   { name: "Reports", path: "/reports" },
+  {
+    name: "Profile",
+    children: [
+      { name: "Logout", path: "/Charge" },
+      { name: "Profile", path: "/Discount_Scheme" },
+      
+    ],
+  },
+  
 ];
 
 const Navbar = () => {
