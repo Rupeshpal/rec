@@ -52,7 +52,6 @@ const FilterOPDPatients = () => {
       consultant: "Dr. Tejendra Chaudhary (EMP15)",
       status: "Registered",
     },
-    // Add more entries here if needed
   ];
 
   const itemsPerPage = 2;
@@ -99,7 +98,9 @@ const FilterOPDPatients = () => {
           <tbody>
             {paginatedData.map((row, idx) => (
               <tr key={idx} className="border-t text-sm">
-                <td className="py-2 px-4 text-blue-600 font-semibold cursor-pointer">{row.opdId}</td>
+                <td className="py-2 px-4 text-blue-600 font-semibold cursor-pointer">
+                  {row.opdId}
+                </td>
                 <td className="py-2 px-4">{row.name}</td>
                 <td className="py-2 px-4">{row.serviceNo}</td>
                 <td className="py-2 px-4">{row.nshiId}</td>
@@ -110,9 +111,15 @@ const FilterOPDPatients = () => {
                 <td className="py-2 px-4">{row.consultant}</td>
                 <td className="py-2 px-4">{row.status}</td>
                 <td className="py-2 px-4 flex space-x-2">
-                  <button title="View" className="text-blue-600"><Eye size={16} /></button>
-                  <button title="Edit" className="text-yellow-600"><Edit2 size={16} /></button>
-                  <button title="Delete" className="text-red-600"><Trash2 size={16} /></button>
+                  <button title="View" className="text-blue-600">
+                    <Eye size={16} />
+                  </button>
+                  <button title="Edit" className="text-yellow-600">
+                    <Edit2 size={16} />
+                  </button>
+                  <button title="Delete" className="text-red-600">
+                    <Trash2 size={16} />
+                  </button>
                 </td>
                 <td className="py-2 px-4">
                   <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-xs font-semibold">

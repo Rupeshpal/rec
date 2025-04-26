@@ -77,10 +77,8 @@ const menus = [
     children: [
       { name: "Logout", path: "/Charge" },
       { name: "Profile", path: "/Discount_Scheme" },
-      
     ],
   },
-  
 ];
 
 const Navbar = () => {
@@ -92,7 +90,8 @@ const Navbar = () => {
   const closeTimeout = useRef(null);
   const nestedRef = useRef(null);
 
-  const disableDropdown = location.pathname === "*" || location.pathname === "/notfound";
+  const disableDropdown =
+    location.pathname === "*" || location.pathname === "/notfound";
 
   const findTitleByPath = (items, path) => {
     for (const item of items) {
@@ -107,18 +106,22 @@ const Navbar = () => {
 
   useEffect(() => {
     const title = findTitleByPath(menus, location.pathname);
-    if (title && !openPages.find((p) => p.path === location.pathname) && location.pathname !== "/") { // Filter out the dashboard page
+    if (
+      title &&
+      !openPages.find((p) => p.path === location.pathname) &&
+      location.pathname !== "/"
+    ) {
+      // Filter out the dashboard page
       setOpenPages((prev) => [...prev, { title, path: location.pathname }]);
     }
   }, [location.pathname]);
 
-
   const handleClosePage = (path) => {
     setOpenPages((prev) => prev.filter((p) => p.path !== path));
   };
-const  handleLogoClick = () =>{
-  setOpenPages([]);
-}
+  const handleLogoClick = () => {
+    setOpenPages([]);
+  };
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
@@ -171,7 +174,9 @@ const  handleLogoClick = () =>{
 
   const toggleNestedDropdown = (nestedDropdown) => {
     if (isMobile && !disableDropdown) {
-      setOpenNestedDropdown(openNestedDropdown === nestedDropdown ? null : nestedDropdown);
+      setOpenNestedDropdown(
+        openNestedDropdown === nestedDropdown ? null : nestedDropdown
+      );
     }
   };
 
@@ -179,14 +184,15 @@ const  handleLogoClick = () =>{
     <>
       <header className="fixed top-0 left-0 w-full bg-teal-700 text-white shadow-md z-50">
         <div className="flex justify-between items-center h-14 px-6 max-w-screen-xl mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white no-underline"
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-xl font-bold text-white no-underline"
             onClick={handleLogoClick}
           >
             <img
               src="/SwasticHMS.png"
               alt="SwastikHMS Logo"
               className="w-12 h-12 object-contain brightness-100 contrast-125 drop-shadow"
-              
             />
             <span className="hidden sm:inline">SwastikHMS</span>
           </Link>
@@ -200,7 +206,10 @@ const  handleLogoClick = () =>{
                 onMouseLeave={handleMouseLeave}
               >
                 {menu.path && menu.path !== "/" ? ( // Exclude the "/" route
-                  <Link to={menu.path} className="hover:bg-teal-800 p-2 rounded transition">
+                  <Link
+                    to={menu.path}
+                    className="hover:bg-teal-800 p-2 rounded transition"
+                  >
                     {menu.name}
                   </Link>
                 ) : (
@@ -220,7 +229,9 @@ const  handleLogoClick = () =>{
                         <div
                           key={i}
                           className="relative"
-                          onMouseEnter={() => handleNestedMouseEnter(child.name)}
+                          onMouseEnter={() =>
+                            handleNestedMouseEnter(child.name)
+                          }
                           onMouseLeave={handleNestedMouseLeave}
                         >
                           <button
@@ -268,10 +279,10 @@ const  handleLogoClick = () =>{
 
       {/* Open Pages Header Chips */}
       <div className="mt-16 mb-1 flex flex-wrap gap-2 px-6 py-0">
-      <button className="px-1 h-5 text-sm bg-green-500 text-white rounded">
-                    Load
-                  </button>
-                  {openPages.map(({ title, path }) => {
+        <button className="px-1 h-5 text-sm bg-green-500 text-white rounded">
+          Load
+        </button>
+        {openPages.map(({ title, path }) => {
           const active = location.pathname === path;
           return (
             <div
@@ -281,14 +292,17 @@ const  handleLogoClick = () =>{
               }`}
             >
               <Link to={path}>{title}</Link>
-              <button onClick={() => handleClosePage(path)} className="hover:text-red-600">
+              <button
+                onClick={() => handleClosePage(path)}
+                className="hover:text-red-600"
+              >
                 ✕
               </button>
             </div>
           );
         })}
       </div>
-  
+
       <hr />
     </>
   );

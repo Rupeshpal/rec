@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
-  Routes,
-  Route,
   useLocation,
   useNavigate,
 } from "react-router-dom";
@@ -12,19 +10,25 @@ import AppRoutes from "./Routes/AppRoutes";
 import { Toaster } from "react-hot-toast";
 import Login from "./Components/Login";
 import { isTokenExpired } from "./utills/checkToken";
-
+import Cookies from "js-cookie";
+import AutoLogout from "./Components/Autologout";
 const AppContent = () => {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (!token || isTokenExpired(token)) {
-      localStorage.removeItem("authToken");
-      navigate("/login");
-    }
-  }, [navigate]);
+    const interval = setInterval(() => {
+      if (location.pathname !== "/login" && isTokenExpired()) {
+        console.log(isTokenExpired());
+        Cookies.remove("authToken");
+        localStorage.removeItem("authToken");
+        navigate("/Login");
+      }
+    }, 5000); // check every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [location.pathname, navigate]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,7 +48,8 @@ const AppContent = () => {
   return (
     <>
       <Toaster position="top-right" />
-      {location.pathname === "/login" ? (
+      <AutoLogout /> {}
+      {location.pathname === "/Login" ? (
         <Login />
       ) : (
         <>

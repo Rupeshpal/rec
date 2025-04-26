@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import axios from "axios";
+import Cookies from "js-cookie";
 const LoginForm = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
@@ -31,6 +31,8 @@ const LoginForm = () => {
 
       if (response.data.status === 1) {
         const token = response.data.token;
+        Cookies.set("authToken", token, { expires: 1 / 24 });
+        // Cookies.set("authToken", token, { expires: 1 / 1440 });
         localStorage.setItem("authToken", token);
         toast.success("Login successful!");
         navigate("/dashboard");

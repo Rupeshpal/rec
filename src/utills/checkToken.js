@@ -1,13 +1,15 @@
 import { jwtDecode } from "jwt-decode";
-export function isTokenExpired(token) {
+import Cookies from "js-cookie";
+
+export const isTokenExpired = () => {
+  const token = Cookies.get("authToken");
   if (!token) return true;
 
   try {
     const decoded = jwtDecode(token);
-    const now = Math.floor(Date.now() / 1000);
-    return decoded.exp < now;
-  } catch (err) {
-    console.error("Invalid token:", err);
+    const currentTime = Date.now() / 1000;
+    return decoded.exp < currentTime;
+  } catch (e) {
     return true;
   }
-}
+};
