@@ -41,32 +41,37 @@ const GeneralInformationForm = () => {
   };
 
   const handleSubmit = async () => {
+    const requiredFields = [
+      "patient_title",
+      "patient_firstname",
+      "patient_lastname",
+      "patient_dob",
+      "patient_age",
+      "patient_gender",
+      "maritalStatus",
+      "bloodGroup",
+      "patientType",
+      "patient_district",
+      "municipality",
+      "village",
+      "patient_contact",
+      "department",
+      "consultant",
+      "paymentAmount",
+    ];
+
+    const missingFields = requiredFields.filter(
+      (field) => !formData[field] || formData[field].toString().trim() === ""
+    );
+
+    if (missingFields.length > 0) {
+      toast.error(
+        `Please fill in all required fields: ${missingFields.join(", ")}`
+      );
+      return;
+    }
+
     try {
-      const requiredFields = [
-        "patient_firstname",
-        "patient_lastname",
-        "patient_gender",
-        "patient_dob",
-        "maritalStatus",
-        "bloodGroup",
-        "patientType",
-        "patient_ethnicity",
-        "department",
-        "consultant",
-        "paymentAmount",
-      ];
-
-      for (const field of requiredFields) {
-        if (!formData[field] || formData[field].trim() === "") {
-          toast.error(
-            `The ${field
-              .replace(/([A-Z])/g, " $1")
-              .toLowerCase()} field is required.`
-          );
-          return;
-        }
-      }
-
       const token = localStorage.getItem("authToken");
 
       const res = await axios.post(
@@ -84,20 +89,7 @@ const GeneralInformationForm = () => {
       toast.success("Form submitted successfully!");
     } catch (error) {
       console.error("Submission error:", error);
-
-      if (error.response) {
-        if (error.response.status === 422) {
-          const errors = error.response.data.errors;
-          const errorMessages = Object.values(errors).flat();
-          errorMessages.forEach((msg) => {
-            toast.error(msg);
-          });
-        } else {
-          toast.error(error.response.data.message || "Something went wrong!");
-        }
-      } else {
-        toast.error("Server not reachable!");
-      }
+      toast.error("Failed to submit.");
     }
   };
 
@@ -283,7 +275,7 @@ const GeneralInformationForm = () => {
           <input
             name="panOrNid"
             onChange={handleChange}
-            type="text"
+            type="number"
             placeholder="PAN/NID*"
             className="w-full mt-1 border-b border-gray-300 focus:outline-none"
           />
