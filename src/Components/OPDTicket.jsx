@@ -48,6 +48,8 @@ const GeneralInformationForm = () => {
       "patient_dob",
       "patient_age",
       "patient_gender",
+      "chargeItem",
+      "paymentMethod",
       "maritalStatus",
       "bloodGroup",
       "patientType",
