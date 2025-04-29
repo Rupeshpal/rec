@@ -31,9 +31,11 @@ const LoginForm = () => {
 
       if (response.data.status === 1) {
         const token = response.data.token;
+        const user= response.data.email;
         Cookies.set("authToken", token, { expires: 1 / 24 });
         // Cookies.set("authToken", token, { expires: 1 / 1440 });
         localStorage.setItem("authToken", token);
+        localStorage.setItem("email",email);
         toast.success("Login successful!");
         navigate("/dashboard");
       } else {

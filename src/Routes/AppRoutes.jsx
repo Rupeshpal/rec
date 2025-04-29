@@ -1,7 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
-// Lazy-loaded components
 const Dashboard = lazy(() => import("../Components/Dashboard"));
 const Test = lazy(() => import("../Components/Add_Services"));
 const Discount_Scheme = lazy(() => import("../Components/Discount_Scheme"));
@@ -9,16 +7,13 @@ const Opd = lazy(() => import("../Components/Opd"));
 const Department = lazy(() => import("../Components/Department"));
 const Doctor = lazy(() => import("../Components/Doctor"));
 const Login = lazy(() => import("../Components/Login"));
-
+const Setup = lazy(() => import("../Pages/Setup/Setup"));
+const Bed_setup = lazy(() => import("../Pages/Setup/Bed_setup"));
 const Salary_Sheet = lazy(() => import("../Components/Salary_Sheet"));
 const Staff_Registration = lazy(() =>
   import("../Components/Staff_Registration")
 );
-
-// ProtectedRoute
 import ProtectedRoute from "../Components/ProtectedRoute";
-
-// Nested Routes (for example, AppBillingRoutes)
 import AppBillingRoutes from "./AppBillingRoutes";
 import SetupRoute from "./SetupRoute";
 import Pharmacy_Route from "./Pharmacy_Route";
@@ -39,11 +34,11 @@ const AppRoutes = () => {
           <Route path="/Discount_Scheme" element={<Discount_Scheme />} />
           <Route path="/Salary_Sheet" element={<Salary_Sheet />} />
           <Route path="/Staff_Registration" element={<Staff_Registration />} />
-          <Route path="/Login" element={Login} />
-          {/* Paste routes from AppBillingRoutes, SetupRoute, etc. here directly */}
+          <Route path="/Login" element={<Login/>} />
+          <Route path="/setup" element={<Setup />} />
+          <Route path="/bed" element={<Bed_setup />} />
         </Route>
       </Routes>
-
       <AppBillingRoutes />
       <DepartmentRoute />
       <SetupRoute />

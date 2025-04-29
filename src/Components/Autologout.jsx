@@ -12,6 +12,7 @@ const AutoLogout = () => {
       if (!token && location.pathname !== "/Login") {
         console.log("Token expired or removed, redirecting to login...");
         localStorage.removeItem("authtoken");
+        localStorage.removeItem("email");
         navigate("/Login");
       }
     }, 5000);

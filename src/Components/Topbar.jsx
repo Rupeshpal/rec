@@ -69,6 +69,7 @@ const menus = [
       { name: "Department Setting", path: "/Department_s" },
       { name: "Hospital Department", path: "/Add-Department" },
       { name: "Doctor Setup", path: "/Doctor" },
+      { name: "Setup", path: "/setup" },
     ],
   },
   { name: "Reports", path: "/reports" },

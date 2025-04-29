@@ -23,6 +23,7 @@ const AppContent = () => {
         console.log(isTokenExpired());
         Cookies.remove("authToken");
         localStorage.removeItem("authToken");
+        localStorage.removeItem("email");
         navigate("/Login");
       }
     }, 5000); // check every 5 seconds
