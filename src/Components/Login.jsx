@@ -70,10 +70,7 @@ const LoginForm = () => {
                 </span>
               </div>
               <p className="text-sm text-black font-[100] opacity-50">
-                Welcome to SwastikHMS, where compassionate care meets
-                cutting-edge technology! Our hospital management software is
-                designed to streamline operations, enhance patient care, and
-                empower healthcare professionals.
+                Welcome to HMS System
               </p>
             </div>
           </div>
