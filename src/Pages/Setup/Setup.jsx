@@ -58,7 +58,7 @@ const setupItems = [
     icon: <FaSitemap />,
     path: "/department-register",
   },
-  { name: "Print Setting", icon: <FaPrint />, path: "/print-setting" },
+  { name: "Print Setting", icon: <FaPrint />, path: "/Print_S" },
   { name: "Modules", icon: <FaThLarge />, path: "/modules" },
   { name: "Permission", icon: <FaShieldAlt />, path: "/permission" },
   { name: "Reception", icon: <FaBriefcaseMedical />, path: "/reception" },

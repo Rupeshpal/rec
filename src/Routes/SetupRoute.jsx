@@ -4,8 +4,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 
 const Charge = lazy(() => import("../Pages/Setup/Services_charge_list"));
-const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
 
+const Department_setting = lazy(() => import("../Pages/Setup/Department_setting"));
+const Print_setting = lazy(() => import("../Pages/Setup/Printing_Setting"));
 
 
 const SetupRoute = () => {
@@ -14,6 +15,7 @@ const SetupRoute = () => {
       <Routes>
       <Route path="/Charge" element={<Charge />} />
           <Route path="/Department_s" element={<Department_setting />} />
+          <Route path="/Print_S" element={< Print_setting/>} />
   
       </Routes>
     
